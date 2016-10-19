@@ -1,9 +1,9 @@
 import os
 
 
-def path_print():
-    current_dir = os.getcwd()
-    for files in current_dir:
-        print(os.path.abspath(files))
+# Print absolute path of files in current directory #
 
-path_print()
+def path_print():
+    for file in os.listdir(os.getcwd()):
+        print(os.path.abspath(file))
+
