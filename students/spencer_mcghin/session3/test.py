@@ -1,4 +1,4 @@
-import numpy
+import numpy, collections
 
 from tabulate import tabulate
 
@@ -14,7 +14,7 @@ donors = {"Nick Padgett": [12312, 34230, 38593],
 
 def report_data():
     # establish separate dictionary objects #
-    results = {}
+    results = collections.OrderedDict()
     donor_dict = {"Donors": []}
     totals_dict = {"Total $": []}
     num_results = {"Number of Donations": []}
@@ -58,5 +58,4 @@ def report_data():
 #     return avg_results
 
 
-report_data()
 print(tabulate(report_data(), headers="keys"))
