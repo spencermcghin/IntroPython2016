@@ -14,7 +14,7 @@ donors = {"Nick Padgett": [12312, 34230, 38593],
           "Beth DeSousa": [29092, 5906, 8734]}
 
 
-""" Input variables """
+""" Input args """
 
 # Input for donation amount #
 
