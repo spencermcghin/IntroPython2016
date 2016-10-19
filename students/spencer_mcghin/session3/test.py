@@ -58,4 +58,4 @@ def report_data():
 #     return avg_results
 
 
-print(tabulate(report_data(), headers="keys"))
+print(tabulate(report_data(), headers="keys", tablefmt="fancy_grid", numalign="center"))

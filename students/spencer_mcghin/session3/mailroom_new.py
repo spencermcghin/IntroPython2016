@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import numpy
+import numpy, collections
 
 from tabulate import tabulate
 
@@ -85,44 +85,29 @@ Print donor donation report functions
 
 """
 
-# Print lists containing output of functions below #
+# Generate combined dictionary objects for tabulate data input format #
 
-def print_report():
-# todo - print output of functions below as list for each donor using tabulate
-
-# Donor list object #
-
-def donor_list_obj():
-    donor_dict = {"Donors":[]}
-    for donor, donation in sorted(donors.items()):
+def report_data():
+    # establish separate dictionary objects #
+    results = collections.OrderedDict()
+    donor_dict = {"Donors": []}
+    totals_dict = {"Total $": []}
+    num_results = {"Number of Donations": []}
+    avg_results = {"Average Donation": []}
+    # loop through donors data set and perform aggregate functions #
+    for donor, donations in sorted(donors.items()):
         donor_dict["Donors"].append(donor)
-
-# Print total donor donations #
-
-def print_donation_total():
-    totals_dict = {"Total":[]}
-    for donor, donations in sorted(donors.items()):
-        totals_dict["Total"].append((sum(donations)))
-
-# Print total number of donations #
-
-def print_num_donations():
-    num_results = {"Number of Donations":[]}
-    for donor, donations in sorted(donors.items()):
+        totals_dict["Total $"].append((sum(donations)))
         num_results["Number of Donations"].append(len(donations))
-
-# Print average donation #
-
-def print_avg_donation():
-    avg_results = {"Average Donation":[]}
-    for donor, donations in sorted(donors.items()):
         avg_results["Average Donation"].append(int(numpy.mean(donations)))
+    # combine dictionary objects into one for tabulate data input format #
+    results.update(donor_dict)
+    results.update(totals_dict)
+    results.update(num_results)
+    results.update(avg_results)
+    return results
 
-# Generate table report #
-
-def run_table():
-    table = [print_donation_total(), print_num_donations(), print_avg_donation()]
-    print(tabulate(table, headers="keys"))
+print(tabulate(report_data(), headers="keys", tablefmt="fancy_grid", numalign="center"))
 
 if __name__ == '__main__':
 # todo - write program!
