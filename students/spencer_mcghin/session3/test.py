@@ -10,19 +10,27 @@ donors = {"Nick Padgett": [12312, 34230, 38593],
           "Beth DeSousa": [29092, 5906, 8734]}
 
 
-# Donor list object #
+# Generate combined dictionary objects for tabulate data input format #
 
 def report_data():
+    # establish separate dictionary objects #
+    results = {}
     donor_dict = {"Donors": []}
     totals_dict = {"Total $": []}
     num_results = {"Number of Donations": []}
     avg_results = {"Average Donation": []}
+    # loop through donors data set and perform aggregate functions #
     for donor, donations in sorted(donors.items()):
         donor_dict["Donors"].append(donor)
         totals_dict["Total $"].append((sum(donations)))
         num_results["Number of Donations"].append(len(donations))
         avg_results["Average Donation"].append(int(numpy.mean(donations)))
-    return donor_dict, totals_dict, num_results, avg_results
+    # combine dictionary objects into one for tabulate data input format #
+    results.update(donor_dict)
+    results.update(totals_dict)
+    results.update(num_results)
+    results.update(avg_results)
+    return results
 
 
 # Print total donor donations #
@@ -50,5 +58,5 @@ def report_data():
 #     return avg_results
 
 
-
+report_data()
 print(tabulate(report_data(), headers="keys"))
