@@ -33,6 +33,9 @@ def report_data():
     return results
 
 
+print(tabulate(report_data(), headers="keys", tablefmt="fancy_grid", numalign="center"))
+
+
 # Print total donor donations #
 
 # def print_donation_total():
