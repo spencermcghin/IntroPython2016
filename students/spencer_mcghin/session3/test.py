@@ -24,6 +24,7 @@ def report_data():
         avg_results["Average Donation"].append(int(numpy.mean(donations)))
     return donor_dict, totals_dict, num_results, avg_results
 
+
 # Print total donor donations #
 
 # def print_donation_total():
@@ -48,9 +49,6 @@ def report_data():
 #         avg_results["Average Donation"].append(int(numpy.mean(donations)))
 #     return avg_results
 
-table = (report_data())
-
-print(tabulate(table, headers="keys"))
 
 
-
+print(tabulate(report_data(), headers="keys"))
