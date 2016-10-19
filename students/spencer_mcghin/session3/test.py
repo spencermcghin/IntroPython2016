@@ -1,6 +1,6 @@
 import numpy
 
-"""Dictionary of Donors and Amounts Donated"""
+from tabulate import tabulate
 
 donors = {"Nick Padgett": [12312, 34230, 38593],
           "Julia Allen": [49203, 5023, 9052],
@@ -9,43 +9,48 @@ donors = {"Nick Padgett": [12312, 34230, 38593],
           "Andy Rocha": [20968, 2091, 8934],
           "Beth DeSousa": [29092, 5906, 8734]}
 
-# Print donor list #
 
-def print_donor_list():
-    for donor, donation in sorted(donors.items()):
-        print(donor)
+# Donor list object #
+
+def report_data():
+    donor_dict = {"Donors": []}
+    totals_dict = {"Total $": []}
+    num_results = {"Number of Donations": []}
+    avg_results = {"Average Donation": []}
+    for donor, donations in sorted(donors.items()):
+        donor_dict["Donors"].append(donor)
+        totals_dict["Total $"].append((sum(donations)))
+        num_results["Number of Donations"].append(len(donations))
+        avg_results["Average Donation"].append(int(numpy.mean(donations)))
+    return donor_dict, totals_dict, num_results, avg_results
 
 # Print total donor donations #
 
-def print_donation_total():
-    totals_results = []
-    for donor, donations in sorted(donors.items()):
-        totals_results.append((sum(donations)))
-    print(totals_results)
+# def print_donation_total():
+#     totals_dict = {"Total $": []}
+#     for donor, donations in sorted(donors.items()):
+#         totals_dict["Total $"].append((sum(donations)))
+#     return totals_dict
+#
+# # Print total number of donations #
+#
+# def print_num_donations():
+#     num_results = {"Number of Donations": []}
+#     for donor, donations in sorted(donors.items()):
+#         num_results["Number of Donations"].append(len(donations))
+#     return num_results
+#
+# # Print average donation #
+#
+# def print_avg_donation():
+#     avg_results = {"Average Donation": []}
+#     for donor, donations in sorted(donors.items()):
+#         avg_results["Average Donation"].append(int(numpy.mean(donations)))
+#     return avg_results
+
+table = (report_data())
+
+print(tabulate(table, headers="keys"))
 
 
-# Print total number of donations #
 
-def print_num_donations():
-    num_results = []
-    for donor, donations in sorted(donors.items()):
-        num_results.append(len(donations))
-    print(num_results)
-
-
-# Print average donation #
-
-def print_avg_donation():
-    avg_results = []
-    for donor, donations in sorted(donors.items()):
-        avg_results.append(int(numpy.mean(donations)))
-    print(avg_results)
-
-
-print_donor_list()
-
-print_donation_total()
-
-print_num_donations()
-
-print_avg_donation()

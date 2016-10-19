@@ -2,6 +2,7 @@
 
 import numpy
 
+from tabulate import tabulate
 
 """Dictionary of Donors and Amounts Donated"""
 
@@ -29,16 +30,13 @@ Functions for program
 
 """Main menu prompt"""
 
-def main():
-    menu = {}
-    menu['1.)']="Generate a Thank You Letter"
-    menu['2.)']="Generate a Donor Report"
-    menu['3.)']="List Current Donors"
-    print("At any time, type 'Exit' in order to exit the program, or 'Menu' to go back to the main menu.")
-    while True:
-        options=sorted(menu.keys())
-        for entry in options:
-            print(entry, menu[entry])
+def user_input():
+    print("From the menu, please select from the following options: '\n'"
+          "1.) Generate a Thank You Letter '\n'"
+          "2.) Generate a Donor Report '\n'"
+          "3.) Exit '\n'"
+          "You may exit the program at any time by typing 'Exit' or return to the main menu by typing 'Menu'")
+    selection = input("> ")
 
 
 
@@ -59,7 +57,7 @@ def add_donor():
 # Add donation amount to new donor #
 
 def add_amount():
-    donors.update({# Variable : donation_amount})
+    donors.update({# Variable) : int(donation_amount)})
 
 # Verify donation amount is an integer #
 
@@ -67,7 +65,7 @@ def check_donation():
     while isinstance(donation_amount, int):
         add_amount()
     else:
-        main()
+        return
 
 # Print email to terminal #
 
@@ -92,30 +90,39 @@ Print donor donation report functions
 def print_report():
 # todo - print output of functions below as list for each donor using tabulate
 
+# Donor list object #
+
+def donor_list_obj():
+    donor_dict = {"Donors":[]}
+    for donor, donation in sorted(donors.items()):
+        donor_dict["Donors"].append(donor)
+
 # Print total donor donations #
 
 def print_donation_total():
-    totals_results = []
+    totals_dict = {"Total":[]}
     for donor, donations in sorted(donors.items()):
-        totals_results.append((sum(donations)))
+        totals_dict["Total"].append((sum(donations)))
 
 # Print total number of donations #
 
 def print_num_donations():
-    num_results = []
+    num_results = {"Number of Donations":[]}
     for donor, donations in sorted(donors.items()):
-        num_results.append(len(donations))
+        num_results["Number of Donations"].append(len(donations))
 
 # Print average donation #
 
 def print_avg_donation():
-    avg_results = []
+    avg_results = {"Average Donation":[]}
     for donor, donations in sorted(donors.items()):
-        avg_results.append(int(numpy.mean(donations)))
+        avg_results["Average Donation"].append(int(numpy.mean(donations)))
 
+# Generate table report #
 
-# Output info for tabulate format #
-# todo - generate list of lists containing output from each function for each donor
+def run_table():
+    table = [print_donation_total(), print_num_donations(), print_avg_donation()]
+    print(tabulate(table, headers="keys"))
 
 if __name__ == '__main__':
 # todo - write program!
