@@ -23,10 +23,10 @@ Raina, Jay N: SQL, R, python
 Robison, Charles E: SQL, python,
 Silva, Enrique R: python, sql
 Tobey, David E: bash, qbasic, sql
-Truong, Alexander C: pyton , htl, xml
+Truong, Alexander C: python , html, xml
 Vosper, Paul: C#, macscript, python
 Weidner, Matthew T: German, python, html
 Williams, Marcus D: python
 Wong, Darryl: perl, php
-Yang, Minghao
+Yang, Minghao:
 Hagi, Abdishu: python, bash
