@@ -2,6 +2,7 @@ import numpy, collections
 
 
 # Print absolute path of files in current directory #
+
 def print_path():
     for file in os.listdir(os.getcwd()):
         print(os.path.abspath(file))
@@ -13,8 +14,6 @@ def gen_lang():
     for line in doc:
         students, languages = line.strip().split(':')
         print(languages)
-
-gen_lang()
 
 
 
