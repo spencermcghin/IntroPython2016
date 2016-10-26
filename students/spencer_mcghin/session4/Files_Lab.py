@@ -18,10 +18,11 @@ import tabulate, collections
 
 
 def gen_lang():
-    doc = open('/Users/SMcGhin/Documents/IntroPython2016/Examples/Session01/students.txt')
+    doc = open('/Users/SMcGhin/Documents/IntroPython2016/Examples/Session01/students.txt', 'r')
     data = []
     for line in doc:
-        print(line)
+        line = line.strip()
+    print(line)
 
 gen_lang()
 
