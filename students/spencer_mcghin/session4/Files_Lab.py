@@ -10,10 +10,12 @@ def print_path():
 # Read students file and generate languages list #
 
 def gen_lang():
-    doc = open('/Users/SMcGhin/Documents/IntroPython2016/Examples/Session01/students.txt', 'r')
-    for line in doc:
+    doc = list(open('/Users/SMcGhin/Documents/IntroPython2016/Examples/Session01/students.txt', 'r'))
+    data = []
+    for line in doc[1:-1]:
         students, languages = line.strip().split(':')
-        print(languages)
+        data.append(languages)
+    " ".join(data)
 
 
 
