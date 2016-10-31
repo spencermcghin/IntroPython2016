@@ -17,7 +17,7 @@ def gen_lang():
 
 
 
-
+gen_lang()
 
 
 
