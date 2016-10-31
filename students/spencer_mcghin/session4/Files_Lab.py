@@ -12,10 +12,10 @@ def print_path():
 def gen_lang():
     doc = list(open('/Users/SMcGhin/Documents/IntroPython2016/Examples/Session01/students.txt', 'r'))
     data = []
-    for line in doc[1:-1]:
+    for line in doc:
         students, languages = line.strip().split(':')
         data.append(languages)
-    " ".join(data)
+        print(data)
 
 
 
