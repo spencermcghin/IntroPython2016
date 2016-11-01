@@ -13,8 +13,8 @@ with open('/Users/SMcGhin/Documents/IntroPython2016/students/spencer_mcghin/sess
 def sherlock_trigram():
     n = input("Please enter a random piece of text from the story.'\n'"
               "> ")
-    if n <= doc_list:
-        print(n + " " + doc[randint(doc_list.index(n) - 1, doc_list.index(n) + 1)])
+    if n in doc_list:
+        print(n + " " + doc_list[randint(doc_list.index(n) - 1, doc_list.index(n) + 1)])
     else:
         sherlock_trigram()
 
