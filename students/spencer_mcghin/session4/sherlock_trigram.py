@@ -14,8 +14,10 @@ def gen_trigrams():
     input_text = input("Please enter a text string from the document '\n'"
                        "> ")
     input_text = input_text.split()  # convert input_text to list #
+    tri_dict = {}
     for i in range(0, len(doc_list)-3):  # iterate through the document and find matches for each part of input_text #
         if input_text[0] == doc_list[i] and input_text[1] == doc_list[i + 1]:
-            print(doc_list[i + 2])
+            return tri_dict[" ".join(input_text)]=doc_list[i+1]
+    print(tri_dict)
 
 gen_trigrams()
