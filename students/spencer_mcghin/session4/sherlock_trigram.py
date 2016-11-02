@@ -1,5 +1,10 @@
-# Imports #
+# Global Variables #
 
+input_text = input("Please enter a text string from the document '\n'"
+                   "> ")
+input_text = input_text.split()  # convert input_text to list #
+tri_list = [input_text]
+final_list = []
 
 # Open file, get rid of breaks, and return as list #
 
@@ -7,17 +12,21 @@ with open('/Users/SMcGhin/Documents/IntroPython2016/students/spencer_mcghin/sess
     doc_list = text.read().split()  # Generate List #
     doc = [" ".join(doc_list).strip('--')]  # Make one long string #
 
-
 # Validate input against text list and generate following words #
 
 def gen_trigrams():
-    input_text = input("Please enter a text string from the document '\n'"
-                       "> ")
-    input_text = input_text.split()  # convert input_text to list #
-    tri_dict = {}
-    for i in range(0, len(doc_list)-3):  # iterate through the document and find matches for each part of input_text #
+    for i in range(0, len(doc_list) - 3):  # iterate through the document and find matches for each part of input_text #
         if input_text[0] == doc_list[i] and input_text[1] == doc_list[i + 1]:
-            return tri_dict[" ".join(input_text)]=doc_list[i+1]
-    print(tri_dict)
+            tri_list.append([doc_list[i + 2]]) # Append matching values to list object #
+        else:
+            break
+    final_list.append(list(sum(tri_list, [])))  # Add input text and appended values to make one list #
 
-gen_trigrams()
+# Take Last Two Indexes of gen_trigrams() and perform same operation #
+
+def print_story():
+    for i in range(0, len(doc_list) - 3):
+        if gen_trigrams()[-2] == doc_list[i] and gen_trigrams()[-1] == doc_list[i + 1]:
+
+
+
