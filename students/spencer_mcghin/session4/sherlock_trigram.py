@@ -6,6 +6,7 @@ input_text = input("Please enter a text string from the document '\n'"
                    "> ")
 input_text = input_text.split()  # convert input_text to list #
 tri_list = [input_text]
+matches_list = []  # Container for word(s) that follow input text #
 
 # Open file, get rid of breaks, and return as list #
 
@@ -20,9 +21,11 @@ with open('/Users/SMcGhin/Documents/IntroPython2016/students/spencer_mcghin/sess
 def gen_trigrams():
     for i in range(0, len(doc_list) - 3):  # iterate through the document and find matches for each part of input_text #
         if input_text[0] == doc_list[i] and input_text[1] == doc_list[i + 1]:
-            tri_list.append([doc_list[i + 2]])  # Append matching values to list object #
-    final_list = (list(sum(tri_list, [])))  # Add input text and appended values to make one list #
+            matches_list.append(doc_list[i + 2])  # Append matching values to list object #
+    final_list = tri_list + [random.choice(matches_list)]  # Add input text and appended values to make one list #
+    print(matches_list)
     print(final_list)
+
 
 # Take Last Two Indexes of gen_trigrams() and perform same operation #
 
