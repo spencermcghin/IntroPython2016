@@ -4,7 +4,7 @@ import random
 
 # Global Variables #
 
-input_text = input("Please enter a text string from the document '\n'"
+input_text = input("Please enter a two word text string from the document '\n'"
                    "> ")
 input_text = input_text.split()  # convert input_text to list #
 matches_list = []  # Container for word(s) that follow input text #
@@ -12,7 +12,7 @@ matches_list = []  # Container for word(s) that follow input text #
 # Open file, get rid of breaks, and return as list #
 
 with open('/Users/SMcGhin/Documents/IntroPython2016/students/spencer_mcghin/session4/sherlock_small.txt', 'r') as text:
-    doc_list = text.read().split()  # Generate List #
+    doc_list = text.read().lower().strip('--').split() # Generate List #
     doc = [" ".join(doc_list).strip('--')]  # Make one long string #
 
 
@@ -26,7 +26,6 @@ def gen_trigrams():
     input_text.append(random.choice(matches_list))  # Add input text and appended values to make one list #
     print(matches_list)
     print(input_text)
-
 
 # Take Last Two Indexes of gen_trigrams() and perform same operation #
 
