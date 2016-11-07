@@ -19,7 +19,6 @@ food_prefs = {"name": "Spencer",
               "salad": "Macaroni",
               "pasta": "Spaghetti"}
 
-
 #
 #
 # print("{name} is from {city} and he likes {cake} cake. His favorite fruit is {fruit}, his favorite salad is\n"
@@ -44,13 +43,16 @@ food_prefs = {"name": "Spencer",
 
 # Sets Comprehensions #
 
+
 s_2 = set(i for i in range(21) if i % 2 == 0)
 s_3 = set(i for i in range(21) if i % 3 == 0)
 s_4 = set(i for i in range(21) if i % 4 == 0)
 
+
+# Loop function to return multiple rows #
+
 def divisors(n):
-    num_sets = set(i for i in range(21) if i % n == 0)
-    print(num_sets)
+    for i in range(2, n):
+        return set(i for i in range(21) if i % n == 0)
 
-divisors(4)
-
+divisors(10)
