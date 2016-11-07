@@ -52,7 +52,8 @@ s_4 = set(i for i in range(21) if i % 4 == 0)
 # Loop function to return multiple rows #
 
 def divisors(n):
-    for i in range(2, n):
-        return set(i for i in range(21) if i % n == 0)
+    for i in range(n):
+        num_sets = set(i for i in range(21) if i % n == 0)
+        print(num_sets)
 
 divisors(10)
