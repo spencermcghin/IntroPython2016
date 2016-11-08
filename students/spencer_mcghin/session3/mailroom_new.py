@@ -51,12 +51,18 @@ def user_input():
 # Prompt for donor name #
 
 def prompt_donor():
+    print("Please enter a donor name or type 'List' for a current donor list: ")
+    prompt_donor_input = input("> ")
     try:
-        print("Please enter a donor name or type 'List' for a current donor list: \n"
-              "> ")
-    except ValueError:
-        print("Please")
+        prompt_donor_input = str(prompt_donor_input)
+    except TypeError:
+        print("Your input must be a string.")
+    else:
 
+
+# Check if donor input is in current donor list #
+
+def check_donor():
 
 
 # Print donor list #
