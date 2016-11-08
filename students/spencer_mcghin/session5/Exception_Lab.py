@@ -7,7 +7,7 @@ def safe_input(input_string=""):
 
 
 if __name__ == "__main__":
-    n = safe_input("Provide another string: ")
+    n = safe_input("Provide a string: ")
     if n is None:
         print("Program terminated by user.")
     else:
