@@ -6,12 +6,12 @@ from tabulate import tabulate
 
 """Dictionary of Donors and Amounts Donated"""
 
-donors = {"Nick Padgett": [12312, 34230, 38593],
-          "Julia Allen": [49203, 5023, 9052],
-          "Pete Tamisin": [9503, 2093, 10932, 40923],
-          "Charles Elliott": [209, 50912, 9026],
-          "Andy Rocha": [20968, 2091, 8934],
-          "Beth DeSousa": [29092, 5906, 8734]}
+donors = {"nick padgett": [12312, 34230, 38593],
+          "julia allen": [49203, 5023, 9052],
+          "pete tamisin": [9503, 2093, 10932, 40923],
+          "charles elliott": [209, 50912, 9026],
+          "andy rocha": [20968, 2091, 8934],
+          "beth desousa": [29092, 5906, 8734]}
 
 
 """ Input args """
@@ -20,7 +20,6 @@ donors = {"Nick Padgett": [12312, 34230, 38593],
 
 donation_amount = input("Please enter a donation amount '\n'"
                         "> ")
-donor_name = input()
 
 """
 
@@ -31,20 +30,34 @@ Functions for program
 """Main menu prompt"""
 
 def user_input():
-        print("From the menu, please select from the following options: '\n'"
-              "1.) Generate a Thank You Letter '\n'"
-              "2.) Generate a Donor Report '\n'"
-              "3.) Exit '\n'"
-              "You may exit the program at any time by typing 'Exit' or return to the main menu by typing 'Menu'")
-selection = input("> ")
+    print("From the menu, please select from the following options: '\n'"
+          "1.) Generate a Thank You Letter '\n'"
+          "2.) Generate a Donor Report '\n'"
+          "3.) Exit '\n'"
+          "You may exit the program at any time by typing 'Exit' or return to the main menu by typing 'Menu'")
+    selection = input("> ")
     try:
-        selection = int(selection)
+        selection = int(selection) or "Exit" or "Menu"
     except ValueError:
         print("Please enter a selection from the list.")
+    else:
+        if selection == 1:
+            prompt_donor()
 
 
 
 """Send a thank you functions"""
+
+# Prompt for donor name #
+
+def prompt_donor():
+    try:
+        print("Please enter a donor name or type 'List' for a current donor list: \n"
+              "> ")
+    except ValueError:
+        print("Please")
+
+
 
 # Print donor list #
 
@@ -115,4 +128,3 @@ def report_data():
 print(tabulate(report_data(), headers="keys", tablefmt="fancy_grid", numalign="center"))
 
 if __name__ == '__main__':
-# todo - write program!
