@@ -1,12 +1,18 @@
-def safe_input():
-    n = input("Please enter a command '\n'"
-              "> ")
-    if n == "^C":
-        raise KeyboardInterrupt("None")
-    elif n == "^D":
-        raise EOFError("None")
+def safe_input(input_string=""):
+    try:
+        n = input(input_string)
+        return n
+    except (KeyboardInterrupt, EOFError):
+        return None
 
-safe_input()
+
+if __name__ == "__main__":
+    n = safe_input("Provide another string: ")
+    if n is None:
+        print("Program terminated by user.")
+    else:
+        print("User responded with:", n)
+
 
 
 
