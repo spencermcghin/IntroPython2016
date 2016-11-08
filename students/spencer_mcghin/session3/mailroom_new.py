@@ -13,51 +13,57 @@ donors = {"nick padgett": [12312, 34230, 38593],
           "andy rocha": [20968, 2091, 8934],
           "beth desousa": [29092, 5906, 8734]}
 
-
-""" Input args """
-
-# Input for donation amount #
-
-donation_amount = input("Please enter a donation amount '\n'"
-                        "> ")
-
 """
 
 Functions for program
 
 """
 
-"""Main menu prompt"""
+# Main menu prompt #
 
 def user_input():
     print("From the menu, please select from the following options: '\n'"
           "1.) Generate a Thank You Letter '\n'"
           "2.) Generate a Donor Report '\n'"
           "3.) Exit '\n'"
-          "You may exit the program at any time by typing 'Exit' or return to the main menu by typing 'Menu'")
-    selection = input("> ")
-    try:
-        selection = int(selection) or "Exit" or "Menu"
-    except ValueError:
-        print("Please enter a selection from the list.")
-    else:
-        if selection == 1:
-            prompt_donor()
+          "You may exit the program at any time by typing 'exit' or return to the main menu by typing 'menu'")
+    while True:
+        choices = ['1', '2', '3', 'exit', 'menu']
+        selection = input("> ")
+        if selection in choices:
+            route_selection(selection)
+        else:
+            print("Please choose an option from the menu.")
+
+
+# Route selection from user_input to proper function #
+
+def route_selection(selection):
+    if selection == 1:
+        prompt_donor()
+    elif selection == 2:
+        report_data()
+    elif selection == 3:
+        break
 
 
 
-"""Send a thank you functions"""
+
+"""
+
+Send a thank you functions
+
+"""
+
+
 
 # Prompt for donor name #
 
 def prompt_donor():
-    print("Please enter a donor name or type 'List' for a current donor list: ")
+    print("Please enter a donor name or type 'list' for a current donor list: ")
     prompt_donor_input = input("> ")
-    try:
-        prompt_donor_input = str(prompt_donor_input)
-    except TypeError:
-        print("Your input must be a string.")
-    else:
+    if prompt_donor_input == "list":
+
 
 
 # Check if donor input is in current donor list #
@@ -70,6 +76,10 @@ def check_donor():
 def print_donor_list():
     for donor, donation in sorted(donors.items()):
         print(donor)
+
+# Print donor list with donation amount #
+
+
 
 # Add donor name to list #
 
@@ -85,11 +95,11 @@ def add_amount():
 
 def check_donation():
     try:
-        donation_amount = int(donation_amount)
+        donation_amount == int(donation_amount)
     except ValueError:
-            print("Donation amount must be an integer.")
-        else:
-            add_amount()
+        print("Donation amount must be an integer.")
+    else:
+        add_amount()
 
 # Print email to terminal #
 
@@ -103,11 +113,7 @@ def print_email():
               "Spencer McGhin")
 
 
-"""
-
-Print donor donation report functions
-
-"""
+"""Print donor donation report functions"""
 
 # Generate combined dictionary objects for tabulate data input format #
 
