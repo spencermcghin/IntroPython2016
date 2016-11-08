@@ -31,13 +31,16 @@ Functions for program
 """Main menu prompt"""
 
 def user_input():
-    print("From the menu, please select from the following options: '\n'"
-          "1.) Generate a Thank You Letter '\n'"
-          "2.) Generate a Donor Report '\n'"
-          "3.) Exit '\n'"
-          "You may exit the program at any time by typing 'Exit' or return to the main menu by typing 'Menu'")
-    selection = input("> ")
-
+        print("From the menu, please select from the following options: '\n'"
+              "1.) Generate a Thank You Letter '\n'"
+              "2.) Generate a Donor Report '\n'"
+              "3.) Exit '\n'"
+              "You may exit the program at any time by typing 'Exit' or return to the main menu by typing 'Menu'")
+selection = input("> ")
+    try:
+        selection = int(selection)
+    except ValueError:
+        print("Please enter a selection from the list.")
 
 
 
@@ -62,10 +65,12 @@ def add_amount():
 # Verify donation amount is an integer #
 
 def check_donation():
-    while isinstance(donation_amount, int):
-        add_amount()
-    else:
-        return
+    try:
+        donation_amount = int(donation_amount)
+    except ValueError:
+            print("Donation amount must be an integer.")
+        else:
+            add_amount()
 
 # Print email to terminal #
 
