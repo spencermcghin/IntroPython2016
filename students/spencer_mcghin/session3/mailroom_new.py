@@ -78,6 +78,7 @@ def prompt_donor():
 
 def check_donor(prompt_donor_input):
     if prompt_donor_input in donors.keys():
+        add_new_amount(prompt_donor_input)
         print_email(prompt_donor_input)
     elif prompt_donor_input != str(prompt_donor_input):
         prompt_donor()
@@ -124,6 +125,15 @@ def add_donor(prompt_donor_input):
         prompt_donor()
     else:
         print("Please choose (y) yes or (no) no.")
+
+# Add donation amount to existing donor #
+
+
+def add_new_amount(prompt_donor_input):
+    donation_amount = input("What is the donation amount? '\n"
+                            "> ")
+    donors[prompt_donor_input].append(donation_amount)
+
 
 # Add donation amount to new donor #
 
@@ -185,6 +195,11 @@ Main Program
 
 """
 
-if __name__ == '__main__':
+
+def main():
     user_input()
+
+
+if __name__ == '__main__':
+    main()
 
