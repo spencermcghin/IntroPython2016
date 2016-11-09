@@ -39,6 +39,7 @@ def user_input():
             print("Please choose an option from the menu.")
 
 
+
 # Route selection from user_input to proper function #
 
 def route_selection(selection):
@@ -52,6 +53,23 @@ def route_selection(selection):
         user_input()
     else:
         raise ValueError("Input does not correspond to a menu value")
+
+
+#
+def prompt_donor():
+    print("Please enter a donor name or type 'list' to see a current donor list: ")
+    while True:
+        prompt_donor_input = input("> ")
+        if prompt_donor_input == 'list':
+            print_donor_list()
+            prompt_donor()
+        else:
+            print("blargh")
+
+
+def print_donor_list():
+    for donor, donation in sorted(donors.items()):
+        print(donor)
 
 
 def donation_list():

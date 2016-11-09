@@ -64,10 +64,12 @@ Send a thank you functions
 
 def prompt_donor():
     print("Please enter a donor name or type 'list' to see a current donor list: ")
-    prompt_donor_input = input("> ")
-    check_donor()
-    if prompt_donor_input == 'list':
-        print_donor_list()
+    while True:
+        prompt_donor_input = input("> ")
+        if prompt_donor_input == 'list':
+            print_donor_list()
+        else:
+            print("blargh")
 
 
 
@@ -157,3 +159,7 @@ def report_data():
 
 
 if __name__ == '__main__':
+
+
+
+user_input()
