@@ -130,7 +130,7 @@ def add_donor(prompt_donor_input):
 
 def add_amount(prompt_donor_input):
     donation_amount = int(input("What is the donation amount? '\n"
-                            "> "))
+                                "> "))
     donors[prompt_donor_input] = [donation_amount]
 
 # Print email to terminal #
