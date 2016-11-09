@@ -130,8 +130,8 @@ def add_donor(prompt_donor_input):
 
 
 def add_new_amount(prompt_donor_input):
-    donation_amount = input("What is the donation amount? '\n"
-                            "> ")
+    donation_amount = int(input("What is the donation amount? '\n"
+                                "> "))
     donors[prompt_donor_input].append(donation_amount)
 
 
