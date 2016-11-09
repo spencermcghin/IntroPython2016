@@ -48,7 +48,7 @@ def route_selection(selection):
     elif selection == 'menu':
         user_input()
     else:
-        raise ValueError("Input does not correspond to a menu value")
+        raise ValueError("Input does not correspond to a menu value.")
 
 
 
@@ -80,7 +80,9 @@ def check_donor(prompt_donor_input):
         print_email(prompt_donor_input)
     elif prompt_donor_input != str(prompt_donor_input):
         prompt_donor()
-    else:
+    elif prompt_donor_input not in donors.keys():
+        check_answer = input("That donor does not appear to be in the current donors list. '\n'"
+              "Would you like to add them? (y) yes or (n) no")
         add_donor(prompt_donor_input)
         print_email(prompt_donor_input)
 
@@ -110,8 +112,17 @@ def donation_list():
 # Add donor name to list #
 
 def add_donor(prompt_donor_input):
-    donors[prompt_donor_input] = ' '
-    add_amount(prompt_donor_input)
+    print("That donor does not appear to be in the current donors list.")
+    while True:
+        check_answer = input("Would you like to add them? (y) yes or (n) no '\n"
+                             "> ")
+        if check_answer == 'y':
+            donors[prompt_donor_input] = ' '
+            add_amount(prompt_donor_input)
+        elif check_answer == 'n':
+            prompt_donor()
+        else:
+            print("Please choose (y) yes or (no) no.")
 
 # Add donation amount to new donor #
 
