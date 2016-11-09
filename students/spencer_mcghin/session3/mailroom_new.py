@@ -111,11 +111,14 @@ def donation_list():
 
 def add_donor(prompt_donor_input):
     donors[prompt_donor_input] = ' '
+    add_amount(prompt_donor_input)
 
 # Add donation amount to new donor #
 
-def add_amount():
-    donors.update({# Variable) : int(donation_amount)})
+def add_amount(prompt_donor_input):
+    donation_amount = input("What is the donation amount?: '\n"
+                       "> ")
+    donors.update({prompt_donor_input: int(donation_amount)})
 
 # Print email to terminal #
 
@@ -126,8 +129,10 @@ def print_email(prompt_donor_input):
               "We hope that you will continue to support our organization in the future." '\n'
               "Sincerely," '\n'
               '\n'
-              "Spencer McGhin".format(prompt_donor_input))
+              "Spencer McGhin '\n"
+              "".format(prompt_donor_input))
 
+        user_input()
 
 """Print donor donation report functions"""
 

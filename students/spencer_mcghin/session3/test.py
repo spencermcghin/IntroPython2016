@@ -106,21 +106,34 @@ def donation_list():
     results.update(totals_dict)
     print(tabulate(results, headers="keys", tablefmt="fancy_grid", numalign="center"))
 
+
 # Add donor name to list #
 
 def add_donor(prompt_donor_input):
     donors[prompt_donor_input] = ' '
+    add_amount(prompt_donor_input)
+
+
+# Add donation amount to new donor #
+
+def add_amount(prompt_donor_input):
+    donation_amount = int(input("What is the donation amount? '\n"
+                                "> "))
+    donors.update({prompt_donor_input: donation_amount})
 
 # Print email to terminal #
 
 
-def print_email(prompt_donor_input):
+def print_email(prompt_donor_input, ):
         print("Hello {}, Thank you so much for your generous donation to our very charitable organization." '\n'
               "Your contribution will help us to further our reach in providing charitable services to those in need." '\n'
               "We hope that you will continue to support our organization in the future." '\n'
               "Sincerely," '\n'
               '\n'
-              "Spencer McGhin".format(prompt_donor_input))
+              "Spencer McGhin '\n"
+              "".format(prompt_donor_input))
+
+        user_input()
 
 
 user_input()
