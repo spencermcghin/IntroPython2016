@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
-import numpy
-import collections
+import numpy, collections
 
 from tabulate import tabulate
 
@@ -14,7 +13,6 @@ donors = {"nick padgett": [12312, 34230, 38593],
           "andy rocha": [20968, 2091, 8934],
           "beth desousa": [29092, 5906, 8734]}
 
-
 """
 
 Functions for program
@@ -22,7 +20,6 @@ Functions for program
 """
 
 # Main menu prompt #
-
 
 def user_input():
     print("From the menu, please select from the following options: '\n'"
@@ -37,7 +34,6 @@ def user_input():
             route_selection(selection)
         else:
             print("Please choose an option from the menu.")
-
 
 
 # Route selection from user_input to proper function #
@@ -55,22 +51,41 @@ def route_selection(selection):
         raise ValueError("Input does not correspond to a menu value")
 
 
-#
+
+"""
+
+Send a thank you functions
+
+"""
+
+
+
+# Prompt for donor name #
+
 def prompt_donor():
     print("Please enter a donor name or type 'list' to see a current donor list: ")
     while True:
         prompt_donor_input = input("> ")
         if prompt_donor_input == 'list':
             print_donor_list()
-            prompt_donor()
         else:
-            print("blargh")
+            check_donor(prompt_donor_input)
 
+
+
+# Check if donor input is in current donor list #
+
+def check_donor(prompt_donor_input):
+    if prompt_donor_input in donors.keys():
+        print_email(prompt_donor_input)
+
+# Print donor list #
 
 def print_donor_list():
     for donor, donation in sorted(donors.items()):
         print(donor)
 
+# Print donor list with donation amount #
 
 def donation_list():
     # establish separate dictionary objects #
@@ -84,29 +99,23 @@ def donation_list():
     # combine dictionary objects into one for tabulate data input format #
     results.update(donor_dict)
     results.update(totals_dict)
-    print(tabulate(donation_list(), headers="keys", tablefmt="fancy_grid", numalign="center"))
-
-
-def report_data():
-    # establish separate dictionary objects #
-    results = collections.OrderedDict()
-    donor_dict = {"Donors": []}
-    totals_dict = {"Total $": []}
-    num_results = {"Number of Donations": []}
-    avg_results = {"Average Donation": []}
-    # loop through donors data set and perform aggregate functions #
-    for donor, donations in sorted(donors.items()):
-        donor_dict["Donors"].append(donor)
-        totals_dict["Total $"].append((sum(donations)))
-        num_results["Number of Donations"].append(len(donations))
-        avg_results["Average Donation"].append(int(numpy.mean(donations)))
-    # combine dictionary objects into one for tabulate data input format #
-    results.update(donor_dict)
-    results.update(totals_dict)
-    results.update(num_results)
-    results.update(avg_results)
     print(tabulate(results, headers="keys", tablefmt="fancy_grid", numalign="center"))
-    user_input()
+
+# Add donor name to list #
+
+def add_donor():
+    donors.update()
+
+# Print email to terminal #
+
+
+def print_email(prompt_donor_input):
+        print("Hello {}, Thank you so much for your generous donation to our very charitable organization." '\n'
+              "Your contribution will help us to further our reach in providing charitable services to those in need." '\n'
+              "We hope that you will continue to support our organization in the future." '\n'
+              "Sincerely," '\n'
+              '\n'
+              "Spencer McGhin".format(prompt_donor_input))
 
 
 user_input()

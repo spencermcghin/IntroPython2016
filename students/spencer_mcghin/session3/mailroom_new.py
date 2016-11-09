@@ -69,14 +69,15 @@ def prompt_donor():
         if prompt_donor_input == 'list':
             print_donor_list()
         else:
-            print("blargh")
+            check_donor(prompt_donor_input)
 
 
 
 # Check if donor input is in current donor list #
 
-def check_donor():
-
+def check_donor(prompt_donor_input):
+    if prompt_donor_input in donors.keys():
+        print_email(prompt_donor_input)
 
 # Print donor list #
 
@@ -110,26 +111,16 @@ def add_donor():
 def add_amount():
     donors.update({# Variable) : int(donation_amount)})
 
-# Verify donation amount is an integer #
-
-def check_donation():
-    try:
-        donation_amount == int(donation_amount)
-    except ValueError:
-        print("Donation amount must be an integer.")
-    else:
-        add_amount()
-
 # Print email to terminal #
 
 
-def print_email():
-        print("Hello %r, Thank you so much for your generous donation to our very charitable organization." '\n'
+def print_email(prompt_donor_input):
+        print("Hello {}, Thank you so much for your generous donation to our very charitable organization." '\n'
               "Your contribution will help us to further our reach in providing charitable services to those in need." '\n'
               "We hope that you will continue to support our organization in the future." '\n'
               "Sincerely," '\n'
               '\n'
-              "Spencer McGhin")
+              "Spencer McGhin".format(prompt_donor_input))
 
 
 """Print donor donation report functions"""
