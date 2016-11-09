@@ -84,7 +84,6 @@ def check_donor(prompt_donor_input):
         prompt_donor()
     elif prompt_donor_input not in donors.keys():
         add_donor(prompt_donor_input)
-        print_email(prompt_donor_input)
 
 
 # Print donor list #
@@ -116,15 +115,16 @@ def donation_list():
 
 def add_donor(prompt_donor_input):
     print("Donor, {}, does not appear to be in the current donors list.".format(prompt_donor_input))
-    check_answer = input("Would you like to add them? (y) yes or (n) no '\n"
-                         "> ")
-    if check_answer == 'y':
-        donors[prompt_donor_input] = []
-        add_amount(prompt_donor_input)
-    elif check_answer == 'n':
-        prompt_donor()
-    else:
-        print("Please choose (y) yes or (no) no.")
+    while True:
+        check_answer = input("Would you like to add them? (y) yes or (n) no '\n>")
+        if check_answer == 'y':
+            donors[prompt_donor_input] = []
+            add_amount(prompt_donor_input)
+        elif check_answer == 'n':
+            prompt_donor()
+        else:
+            print("Please choose (y) yes or (n) no.")
+
 
 # Add donation amount to existing donor #
 
@@ -150,6 +150,7 @@ def add_amount(prompt_donor_input):
         add_amount(prompt_donor_input)
     else:
         donors[prompt_donor_input] = [donation_amount]
+        print_email(prompt_donor_input)
 
 # Print email to terminal #
 
