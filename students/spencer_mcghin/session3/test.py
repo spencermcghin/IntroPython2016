@@ -19,6 +19,7 @@ Functions for program
 
 """
 
+
 # Main menu prompt #
 
 def user_input():
@@ -51,13 +52,11 @@ def route_selection(selection):
         raise ValueError("Input does not correspond to a menu value")
 
 
-
 """
 
 Send a thank you functions
 
 """
-
 
 
 # Prompt for donor name #
@@ -72,7 +71,6 @@ def prompt_donor():
             check_donor(prompt_donor_input)
 
 
-
 # Check if donor input is in current donor list #
 
 def check_donor(prompt_donor_input):
@@ -80,15 +78,17 @@ def check_donor(prompt_donor_input):
         print_email(prompt_donor_input)
     elif prompt_donor_input != str(prompt_donor_input):
         prompt_donor()
-    else:
+    elif prompt_donor_input not in donors.keys():
         add_donor(prompt_donor_input)
         print_email(prompt_donor_input)
+
 
 # Print donor list #
 
 def print_donor_list():
     for donor, donation in sorted(donors.items()):
         print(donor)
+
 
 # Print donor list with donation amount #
 
@@ -110,8 +110,16 @@ def donation_list():
 # Add donor name to list #
 
 def add_donor(prompt_donor_input):
-    donors[prompt_donor_input] = ' '
-    add_amount(prompt_donor_input)
+    print("Donor, {}, does not appear to be in the current donors list.".format(prompt_donor_input))
+    check_answer = input("Would you like to add them? (y) yes or (n) no '\n"
+                         "> ")
+    if check_answer == 'y':
+        donors[prompt_donor_input] = []
+        add_amount(prompt_donor_input)
+    elif check_answer == 'n':
+        prompt_donor()
+    else:
+        print("Please choose (y) yes or (no) no.")
 
 
 # Add donation amount to new donor #
@@ -119,21 +127,43 @@ def add_donor(prompt_donor_input):
 def add_amount(prompt_donor_input):
     donation_amount = int(input("What is the donation amount? '\n"
                                 "> "))
-    donors.update({prompt_donor_input: donation_amount})
+    donors[prompt_donor_input] = [donation_amount]
+
 
 # Print email to terminal #
 
 
-def print_email(prompt_donor_input, ):
-        print("Hello {}, Thank you so much for your generous donation to our very charitable organization." '\n'
-              "Your contribution will help us to further our reach in providing charitable services to those in need." '\n'
-              "We hope that you will continue to support our organization in the future." '\n'
-              "Sincerely," '\n'
-              '\n'
-              "Spencer McGhin '\n"
-              "".format(prompt_donor_input))
+def print_email(prompt_donor_input):
+    print("Hello {}, Thank you so much for your generous donation to our very charitable organization." '\n'
+          "Your contribution will help us to further our reach in providing charitable services to those in need." '\n'
+          "We hope that you will continue to support our organization in the future." '\n'
+          "Sincerely," '\n'
+          '\n'
+          "Spencer McGhin '\n"
+          "".format(prompt_donor_input))
+    user_input()
 
-        user_input()
+
+def report_data():
+    # establish separate dictionary objects #
+    results = collections.OrderedDict()
+    donor_dict = {"Donors": []}
+    totals_dict = {"Total $": []}
+    num_results = {"Number of Donations": []}
+    avg_results = {"Average Donation": []}
+    # loop through donors data set and perform aggregate functions #
+    for donor, donations in sorted(donors.items()):
+        donor_dict["Donors"].append(donor)
+        totals_dict["Total $"].append((sum(donations)))
+        num_results["Number of Donations"].append(len(donations))
+        avg_results["Average Donation"].append(int(numpy.mean(donations)))
+    # combine dictionary objects into one for tabulate data input format #
+    results.update(donor_dict)
+    results.update(totals_dict)
+    results.update(num_results)
+    results.update(avg_results)
+    print(tabulate(results, headers="keys", tablefmt="fancy_grid", numalign="center"))
+    user_input()
 
 
 user_input()
