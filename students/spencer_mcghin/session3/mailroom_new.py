@@ -39,13 +39,16 @@ def user_input():
 # Route selection from user_input to proper function #
 
 def route_selection(selection):
-    if selection == 1:
+    if selection == '1':
         prompt_donor()
-    elif selection == 2:
+    elif selection == '2':
         report_data()
-    elif selection == 3:
-        break
-
+    elif selection == '3' or 'exit':
+        quit()
+    elif selection == 'menu':
+        user_input()
+    else:
+        raise ValueError("Input does not correspond to a menu value")
 
 
 
@@ -60,9 +63,11 @@ Send a thank you functions
 # Prompt for donor name #
 
 def prompt_donor():
-    print("Please enter a donor name or type 'list' for a current donor list: ")
+    print("Please enter a donor name or type 'list' to see a current donor list: ")
     prompt_donor_input = input("> ")
-    if prompt_donor_input == "list":
+    check_donor()
+    if prompt_donor_input == 'list':
+        print_donor_list()
 
 
 
@@ -79,7 +84,19 @@ def print_donor_list():
 
 # Print donor list with donation amount #
 
-
+def donation_list():
+    # establish separate dictionary objects #
+    results = collections.OrderedDict()
+    donor_dict = {"Donors": []}
+    totals_dict = {"Total $": []}
+    # loop through donors data set and perform aggregate functions #
+    for donor, donations in sorted(donors.items()):
+        donor_dict["Donors"].append(donor)
+        totals_dict["Total $"].append((sum(donations)))
+    # combine dictionary objects into one for tabulate data input format #
+    results.update(donor_dict)
+    results.update(totals_dict)
+    print(tabulate(results, headers="keys", tablefmt="fancy_grid", numalign="center"))
 
 # Add donor name to list #
 
@@ -135,8 +152,8 @@ def report_data():
     results.update(totals_dict)
     results.update(num_results)
     results.update(avg_results)
-    return results
+    print(tabulate(results, headers="keys", tablefmt="fancy_grid", numalign="center"))
+    user_input()
 
-print(tabulate(report_data(), headers="keys", tablefmt="fancy_grid", numalign="center"))
 
 if __name__ == '__main__':
