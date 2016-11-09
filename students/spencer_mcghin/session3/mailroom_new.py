@@ -73,11 +73,17 @@ def prompt_donor():
 
 
 
-# Check if donor input is in current donor list #
+# Check if donor input is in current donor list, verify input is string #
 
 def check_donor(prompt_donor_input):
     if prompt_donor_input in donors.keys():
         print_email(prompt_donor_input)
+    elif prompt_donor_input != str(prompt_donor_input):
+        prompt_donor()
+    else:
+        add_donor(prompt_donor_input)
+        print_email(prompt_donor_input)
+
 
 # Print donor list #
 
@@ -103,8 +109,8 @@ def donation_list():
 
 # Add donor name to list #
 
-def add_donor():
-    donors.update()
+def add_donor(prompt_donor_input):
+    donors[prompt_donor_input] = ' '
 
 # Add donation amount to new donor #
 
