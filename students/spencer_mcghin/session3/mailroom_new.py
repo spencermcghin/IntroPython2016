@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-import numpy, collections
+import numpy
+import collections
 
 from tabulate import tabulate
 
@@ -21,6 +22,7 @@ Functions for program
 
 # Main menu prompt #
 
+
 def user_input():
     print("From the menu, please select from the following options: '\n'"
           "1.) Generate a Thank You Letter '\n'"
@@ -38,6 +40,7 @@ def user_input():
 
 # Route selection from user_input to proper function #
 
+
 def route_selection(selection):
     if selection == '1':
         prompt_donor()
@@ -51,7 +54,6 @@ def route_selection(selection):
         raise ValueError("Input does not correspond to a menu value.")
 
 
-
 """
 
 Send a thank you functions
@@ -59,6 +61,7 @@ Send a thank you functions
 """
 
 # Prompt for donor name #
+
 
 def prompt_donor():
     print("Please enter a donor name or type 'list' to see a current donor list: ")
@@ -70,8 +73,8 @@ def prompt_donor():
             check_donor(prompt_donor_input)
 
 
-
 # Check if donor input is in current donor list, verify input is string #
+
 
 def check_donor(prompt_donor_input):
     if prompt_donor_input in donors.keys():
@@ -85,11 +88,13 @@ def check_donor(prompt_donor_input):
 
 # Print donor list #
 
+
 def print_donor_list():
     for donor, donation in sorted(donors.items()):
         print(donor)
 
 # Print donor list with donation amount #
+
 
 def donation_list():
     # establish separate dictionary objects #
@@ -107,6 +112,7 @@ def donation_list():
 
 # Add donor name to list #
 
+
 def add_donor(prompt_donor_input):
     print("Donor, {}, does not appear to be in the current donors list.".format(prompt_donor_input))
     check_answer = input("Would you like to add them? (y) yes or (n) no '\n"
@@ -120,6 +126,7 @@ def add_donor(prompt_donor_input):
         print("Please choose (y) yes or (no) no.")
 
 # Add donation amount to new donor #
+
 
 def add_amount(prompt_donor_input):
     donation_amount = int(input("What is the donation amount? '\n"
@@ -140,9 +147,15 @@ def print_email(prompt_donor_input):
 
         user_input()
 
-"""Print donor donation report functions"""
+
+"""
+
+Print donor donation report functions
+
+"""
 
 # Generate combined dictionary objects for tabulate data input format #
+
 
 def report_data():
     # establish separate dictionary objects #
@@ -166,8 +179,12 @@ def report_data():
     user_input()
 
 
+"""
+
+Main Program
+
+"""
+
 if __name__ == '__main__':
+    user_input()
 
-
-
-user_input()
