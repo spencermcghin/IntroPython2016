@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-
 from Coding_Bat_Ex import sorta_sum
 
 
