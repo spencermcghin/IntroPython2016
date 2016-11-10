@@ -122,8 +122,6 @@ def add_donor(prompt_donor_input):
             add_amount(prompt_donor_input)
         elif check_answer == 'n':
             prompt_donor()
-        else:
-            print("Please choose (y) yes or (n) no.")
 
 
 # Add donation amount to existing donor #
