@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 def test_01(a, b):
     assert a == 10
     assert b == 9
