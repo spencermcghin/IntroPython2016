@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+
 # Examples from coding bat - sorta_sum
 def sorta_sum(a, b):
     if a + b in range(10, 20):
