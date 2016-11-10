@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from Coding_Bat_Ex import sorta_sum
+from coding_bat import sorta_sum
 
 
 def test_01():
