@@ -50,20 +50,20 @@ def dice_menu():
 
 
 def roll_die(**dice):
-    """ Roll dice function. Will take input as dice_dict key and append result to list for output."""
+    """ Roll dice function. Will take input as dice_dict key and append result to list for output. """
     for k, v in dice.items():
         print(k, v)
 
 
 def die_amount_selector(user_input):
-    """ Prompt user for amount of dice to roll"""
+    """ Prompt user for amount of dice to roll and then add to selection list. """
     while True:
         try:
             die_amount = int(input("How many would you like to roll? '\n>"))
         except TypeError:
             print("Please enter an appropriate value.")
         else:
-            selection_list.append(user_input.strip('.') * die_amount)
+            selection_list.extend((user_input.strip('.') * die_amount))
             print(selection_list)
 
 
