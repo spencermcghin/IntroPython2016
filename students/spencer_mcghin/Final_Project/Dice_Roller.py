@@ -6,9 +6,10 @@ and roll them individually, in multiples of the same dice, or as an assortment
 of different dice.
 
 """
-import collections
+
+# Imports
 import random
-from pprint import pprint
+
 
 # Define Global Variables
 dice_dict = {"d2": [random.randint(1, 2)],
@@ -28,23 +29,24 @@ selection_list = []
 
 
 # Define program functions
-
-
 def main():
     print("Hi there and welcome to the Super Dice Roller!" '\n'
           "Please choose from the menu below, and then follow any additional instructions.")
     print("Choose the type of die you'd like roll. '\n'"
           "You'll be able to choose more and/or different dice afterwards.")
+    dice_menu()
+
+
+def dice_menu():
     dice_options = zip(number_of_dice, dice_list)
     for number, dice in dice_options:
         print(number, dice)
-    try:
-        user_input = int(input("> "))
-    except ValueError:
-        print("Please try again.")
-    else:
-        selection_dict.append(user_input)
-        print(selection_dict)
+    while True:
+        user_input = input("> ") + '.'
+        if user_input not in number_of_dice:
+            print("Please try again.")
+        else:
+            die_amount_selector(user_input)
 
 
 def roll_die(**dice):
@@ -53,8 +55,17 @@ def roll_die(**dice):
         print(k, v)
 
 
-def add_die(die_variable):
-    """ Append die selected from menu to selection_dict for later output."""
+def die_amount_selector(user_input):
+    """ Prompt user for amount of dice to roll"""
+    while True:
+        try:
+            die_amount = int(input("How many would you like to roll? '\n>"))
+        except TypeError:
+            print("Please enter an appropriate value.")
+        else:
+            selection_list.append(user_input.strip('.') * die_amount)
+            print(selection_list)
+
 
 
 main()
