@@ -20,9 +20,8 @@ Functions for program
 
 """
 
+
 # Main menu prompt #
-
-
 def user_input():
     print("From the menu, please select from the following options: '\n'"
           "1.) Generate a Thank You Letter '\n'"
@@ -39,14 +38,12 @@ def user_input():
 
 
 # Route selection from user_input to proper function #
-
-
 def route_selection(selection):
     if selection == '1':
         prompt_donor()
     elif selection == '2':
         report_data()
-    elif selection == '3' or 'exit':
+    elif selection == '3' or selection == 'exit':
         quit()
     elif selection == 'menu':
         user_input()
@@ -61,8 +58,6 @@ Send a thank you functions
 """
 
 # Prompt for donor name #
-
-
 def prompt_donor():
     print("Please enter a donor name or type 'list' to see a current donor list: ")
     while True:
@@ -74,8 +69,6 @@ def prompt_donor():
 
 
 # Check if donor input is in current donor list, verify input is string #
-
-
 def check_donor(prompt_donor_input):
     if prompt_donor_input in donors.keys():
         add_new_amount(prompt_donor_input)
@@ -87,15 +80,11 @@ def check_donor(prompt_donor_input):
 
 
 # Print donor list #
-
-
 def print_donor_list():
     for donor, donation in sorted(donors.items()):
         print(donor)
 
 # Print donor list with donation amount #
-
-
 def donation_list():
     # establish separate dictionary objects #
     results = collections.OrderedDict()
@@ -110,9 +99,8 @@ def donation_list():
     results.update(totals_dict)
     print(tabulate(results, headers="keys", tablefmt="fancy_grid", numalign="center"))
 
+
 # Add donor name to list #
-
-
 def add_donor(prompt_donor_input):
     print("Donor, {}, does not appear to be in the current donors list.".format(prompt_donor_input))
     while True:
@@ -125,8 +113,6 @@ def add_donor(prompt_donor_input):
 
 
 # Add donation amount to existing donor #
-
-
 def add_new_amount(prompt_donor_input):
     try:
         donation_amount = int(input("What is the donation amount? '\n>"))
@@ -138,8 +124,6 @@ def add_new_amount(prompt_donor_input):
 
 
 # Add donation amount to new donor #
-
-
 def add_amount(prompt_donor_input):
     try:
         donation_amount = int(input("What is the donation amount? '\n>"))
@@ -150,9 +134,8 @@ def add_amount(prompt_donor_input):
         donors[prompt_donor_input] = [donation_amount]
         print_email(prompt_donor_input)
 
+
 # Print email to terminal #
-
-
 def print_email(prompt_donor_input):
         print("Hello {}, Thank you so much for your generous donation to our very charitable organization." '\n'
               "Your contribution will help us to further our reach in providing charitable services to those in need." '\n'
@@ -172,8 +155,6 @@ Print donor donation report functions
 """
 
 # Generate combined dictionary objects for tabulate data input format #
-
-
 def report_data():
     # establish separate dictionary objects #
     results = collections.OrderedDict()
