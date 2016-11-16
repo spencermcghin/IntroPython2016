@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 """ Test code for html_render.py """
 
+import io
 
 from html_render import Element
 
@@ -29,6 +30,12 @@ def test_render():
     outfile = io.StringIO()
 
     e = Element("this is some text")
-    e.append(" and this is some more text")
+    e.append("and this is some more text")
 
     e.render(outfile)
+
+    print(outfile.seek(0))
+    file_contents = outfile.read()
+
+    assert "<html>" in file_contents.startswith("<html>")
+    assert "</html>" in file_contents.strip().endswith("</html>")

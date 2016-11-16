@@ -11,5 +11,7 @@ class Element:
         self.content.append(content)
 
     def render(self, out_file):
+        out_file.write("<html>\n")
         for line in self.content:
-            out_file.write(line + '\n')
+            out_file.write(line+'\n')
+        out_file.write("</html>\n")
