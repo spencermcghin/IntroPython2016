@@ -11,10 +11,9 @@ class Element:
         self.content.append(content)
 
     def render(self, out_file, ind=''):
-        ind = int(ind)
         out_file.write("<html>\n")
         for line in self.content:
-            line.append(' ' * ind)
+            line.append(' ' * int(ind))
             out_file.write(line + '\n')
         out_file.write("</html>\n")
 
