@@ -2,3 +2,7 @@
 
 
 class Element:
+    html =
+
+    def __init__(self):
+        self
