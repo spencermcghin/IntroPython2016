@@ -31,7 +31,7 @@ def test_render():
 
     e.render(outfile)
 
-    e.render(ind='4')
+    e.render(ind=4)
 
     file_contents = outfile.read()
 

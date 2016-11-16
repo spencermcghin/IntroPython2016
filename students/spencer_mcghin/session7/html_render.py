@@ -10,10 +10,10 @@ class Element:
     def append_content(self, content):
         self.content.append(content)
 
-    def render(self, out_file, ind=''):
+    def render(self, out_file, ind):
         out_file.write("<html>\n")
         for line in self.content:
-            line.append(' ' * int(ind))
+            (' ' * ind).join(self.content)
             out_file.write(line + '\n')
         out_file.write("</html>\n")
 
