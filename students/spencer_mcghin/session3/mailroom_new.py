@@ -57,6 +57,7 @@ Send a thank you functions
 
 """
 
+
 # Prompt for donor name #
 def prompt_donor():
     print("Please enter a donor name or type 'list' to see a current donor list: ")
@@ -83,6 +84,7 @@ def check_donor(prompt_donor_input):
 def print_donor_list():
     for donor, donation in sorted(donors.items()):
         print(donor)
+
 
 # Print donor list with donation amount #
 def donation_list():
@@ -153,6 +155,7 @@ def print_email(prompt_donor_input):
 Print donor donation report functions
 
 """
+
 
 # Generate combined dictionary objects for tabulate data input format #
 def report_data():
