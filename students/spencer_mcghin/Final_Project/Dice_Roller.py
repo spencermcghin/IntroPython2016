@@ -31,8 +31,7 @@ selection_list = []
 # Define program functions
 def main():
     print("Hi there and welcome to the Super Dice Roller!" '\n'
-          "Please choose from the menu below, and then follow any additional instructions.")
-    print("Choose the type of die you'd like roll. '\n'"
+          "Please choose a dice to roll from the menu below, and then follow any additional instructions." '\n'
           "You'll be able to choose more and/or different dice afterwards.")
     dice_menu()
 
@@ -64,7 +63,19 @@ def die_amount_selector(user_input):
             print("Please enter an appropriate value.")
         else:
             selection_list.extend((user_input.strip('.') * die_amount))
-            print(selection_list)
+            roll_more_prompt()
+
+
+def roll_more_prompt():
+    """ Check with user if they would like to roll more / different dice. """
+    print("Would you like to roll any additional dice?")
+    while True:
+        confirm = input("Yes (y) or No (n)? '\n>")
+        if confirm == 'y':
+            dice_menu()
+        elif confirm == 'n':
+            break
+
 
 
 
