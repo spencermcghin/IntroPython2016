@@ -30,7 +30,6 @@ def test_render():
     outfile = io.StringIO()
 
     e = Element("this is some text")
-    e.append("and this is some more text")
 
     e.render(outfile)
 
@@ -39,3 +38,5 @@ def test_render():
 
     assert "<html>" in file_contents.startswith("<html>")
     assert "</html>" in file_contents.strip().endswith("</html>")
+
+    print(outfile)
