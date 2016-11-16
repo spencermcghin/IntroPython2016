@@ -29,9 +29,9 @@ def test_render():
 
     e = Element("this is some text")
 
-    e.render(outfile)
-
     e.render(ind=4)
+
+    e.render(outfile)
 
     file_contents = outfile.read()
 
