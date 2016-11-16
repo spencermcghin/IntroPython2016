@@ -4,13 +4,10 @@ Excercise: Write unit tests for mailroom.py
 November 2, 2016
 """
 
-from mailroom import print_report, proc_donation, get_donation
+from mailroom import sort_donors, proc_donation
 
-def test_print_report_1():
-    assert print_report() is None
+def test_sort_donors():
+    assert sort_donors() is None
 
 def test_proc_donation_1():
-    assert proc_donation('Fred', 269) is None
-
-def test_get_donation_1():
-    get_donation()
+    assert proc_donation('Fred', 35) is None
