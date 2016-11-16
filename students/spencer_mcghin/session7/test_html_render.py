@@ -21,8 +21,6 @@ def test_content():
 def test_append():
     e = Element("this is some text")
 
-    e.append("some more text")
-
     assert "some more text" in e.content
 
 
@@ -33,9 +31,10 @@ def test_render():
 
     e.render(outfile)
 
+    e.render(ind=4)
+
     file_contents = outfile.read()
 
     assert "<html>" in file_contents.startswith("<html>")
     assert "</html>" in file_contents.strip().endswith("</html>")
-
     print(outfile)
