@@ -33,7 +33,6 @@ def test_render():
 
     e.render(outfile)
 
-    print(outfile.seek(0))
     file_contents = outfile.read()
 
     assert "<html>" in file_contents.startswith("<html>")
