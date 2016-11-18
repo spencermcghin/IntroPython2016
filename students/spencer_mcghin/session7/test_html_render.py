@@ -34,3 +34,4 @@ def test_render():
     file_contents = outfile.getvalue()
 
     print(file_contents)
+
