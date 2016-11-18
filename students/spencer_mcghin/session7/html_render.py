@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
-import io
-
 
 class Element(object):
+    tag = 'html'
+
     def __init__(self, content=None):
         self.content = []
         if content:
@@ -13,20 +13,17 @@ class Element(object):
         self.content.append(content)
 
     def render(self, out_file, ind):
-        out_file.write('<html>\n')
+        out_file.write('<' + self.tag + '>' + '\n')
         for line in self.content:
             out_file.write((' ' * ind) + line + '\n')
-        out_file.write('</html>')
+        out_file.write('</' + self.tag + '>')
 
 
-e = Element("this is some content")
+class Body(Element):
+    tag = 'body'
 
-outfile = io.StringIO()
 
-e.append_content("this is some more stuff")
+class P(Element):
+    tag = 'p'
 
-e.render(outfile, ind=4)
 
-file_contents = outfile.getvalue()
-
-print(file_contents)
