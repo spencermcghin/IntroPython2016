@@ -12,14 +12,14 @@ import random
 
 
 # Define Global Variables
-dice_dict = {"d2": [random.randint(1, 2)],
-             "d4": [random.randint(1, 4)],
-             "d6": [random.randint(1, 5)],
-             "d8": [random.randint(1, 6)],
-             "d10": [random.randint(1, 10)],
-             "d12": [random.randint(1, 12)],
-             "d20": [random.randint(1, 20)],
-             "d100": [random.randint(1, 100)]}
+dice_dict = {"1": [random.randint(1, 2)],
+             "2": [random.randint(1, 4)],
+             "3": [random.randint(1, 5)],
+             "4": [random.randint(1, 6)],
+             "5": [random.randint(1, 10)],
+             "6": [random.randint(1, 12)],
+             "7": [random.randint(1, 20)],
+             "8": [random.randint(1, 100)]}
 
 dice_list = ["d2", "d4", "d6", "d8", "d10", "d12", "d20", "d100"]
 
@@ -37,6 +37,7 @@ def main():
 
 
 def dice_menu():
+    """ Print out menu of dice options. """
     dice_options = zip(number_of_dice, dice_list)
     for number, dice in dice_options:
         print(number, dice)
@@ -48,22 +49,26 @@ def dice_menu():
             die_amount_selector(user_input)
 
 
-def roll_die(**dice):
-    """ Roll dice function. Will take input as dice_dict key and append result to list for output. """
-    for k, v in dice.items():
-        print(k, v)
+def roll_die():
+    """ Roll dice function. Rolls matching die for every value in selection_list object. """
+    die_roll_dict = {}
+    for die in selection_list:
+        if die in dice_dict.keys():
+            print(dice_dict[die])
+        # ToDo - work on roll_die function
 
 
 def die_amount_selector(user_input):
     """ Prompt user for amount of dice to roll and then add to selection list. """
-    while True:
-        try:
-            die_amount = int(input("How many would you like to roll? '\n>"))
-        except TypeError:
-            print("Please enter an appropriate value.")
-        else:
-            selection_list.extend((user_input.strip('.') * die_amount))
-            roll_more_prompt()
+    try:
+        die_amount = int(input("How many would you like to roll? '\n>"))
+    except ValueError:
+        print("Please enter an appropriate value.")
+        die_amount_selector(user_input)
+    else:
+        selection_list.extend((user_input.strip('.') * die_amount))
+        print(selection_list)
+        roll_more_prompt()
 
 
 def roll_more_prompt():
@@ -74,10 +79,7 @@ def roll_more_prompt():
         if confirm == 'y':
             dice_menu()
         elif confirm == 'n':
-            break
-        # ToDo - add dice roll function here
-
-
+            roll_die()
 
 
 main()
