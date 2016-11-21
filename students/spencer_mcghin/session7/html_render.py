@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import io
 
 class Element(object):
     """HTML class"""
@@ -34,3 +35,13 @@ class P(Element):
 
 if __name__ == '__main__':
     pass
+
+outfile = io.StringIO()
+
+b = Body("this is some text")
+
+b.render(outfile, ind=4)
+
+file_contents = outfile.getvalue()
+
+print(file_contents)

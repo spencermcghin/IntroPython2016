@@ -3,7 +3,7 @@
 
 import io
 
-from html_render import Element
+from html_render import Body, Element, P
 
 
 def test_init():
@@ -35,3 +35,26 @@ def test_render():
 
     print(file_contents)
 
+
+def test_body_render():
+    outfile = io.StringIO()
+
+    b = Body("this is some text")
+
+    b.render(outfile, ind=4)
+
+    file_contents = outfile.getvalue()
+
+    print(file_contents)
+
+
+def test_p_render():
+    outfile = io.StringIO()
+
+    p = P("this is some text")
+
+    p.render(outfile, ind=4)
+
+    file_contents = outfile.getvalue()
+
+    print(file_contents)
