@@ -14,23 +14,82 @@ import random
 
 
 # Define Global Variables
-dice_dict = {"1": [random.randint(1, 2)],
-             "2": [random.randint(1, 4)],
-             "3": [random.randint(1, 5)],
-             "4": [random.randint(1, 6)],
-             "5": [random.randint(1, 10)],
-             "6": [random.randint(1, 12)],
-             "7": [random.randint(1, 20)],
-             "8": [random.randint(1, 100)]}
+side_dict = {"1": [2],
+             "2": [4],
+             "3": [6],
+             "4": [8],
+             "5": [10],
+             "6": [12],
+             "7": [20],
+             "8": [100]}
 
 dice_list = ["d2", "d4", "d6", "d8", "d10", "d12", "d20", "d100"]
 
 number_of_dice = [str(x) + '.' for x in range(1, len(dice_list) + 1)]
 
-selection_list = []
+
+# Classes
+class Dice(object):
+
+    def __init__(self, side, number):
+        self.side = side
+        self.number = number
+        self.selection_list = []
+
+    def add_dice(self, side, number):
+        """ Add selected number of dice to selection list object. """
+        self.selection_list.extend(number * side)
+
+    def get_dice_value(self):
+        """ Returns random value for each die selected and then updates it to the die_roll_dict object. """
+        die_roll_dict = {}
+        for die in self.selection_list:
+            if die in side_dict:
+                die_roll_dict[die] = [random.randint(1, self.side)]
 
 
-# Define program functions
+class D2(Dice):
+    """ Subclass for 2 sided dice. """
+    pass
+
+
+class D4(Dice):
+    """ Subclass for 4 sided dice. """
+    pass
+
+
+class D6(Dice):
+    """ Subclass for 6 sided dice. """
+    pass
+
+
+class D8(Dice):
+    """ Subclass for 8 sided dice. """
+    pass
+
+
+class D10(Dice):
+    """ Subclass for 10 sided dice. """
+    pass
+
+
+class D12(Dice):
+    """ Subclass for 12 sided dice. """
+    pass
+
+
+class D20(Dice):
+    """ Subclass for 20 sided dice. """
+    pass
+
+
+class D100(Dice):
+    """ Subclass for 100 sided dice. """
+    pass
+
+
+# Functions for main program
+
 def main():
     print("Hi there and welcome to the Super Dice Roller!" '\n'
           "Please choose a dice to roll from the menu below, and then follow any additional instructions." '\n'
@@ -49,16 +108,6 @@ def dice_menu():
             print("Please try again.")
         else:
             die_amount_selector(user_input)
-
-
-def roll_die():
-    """ Roll dice function. Rolls matching die for every value in selection_list object. """
-    die_roll_dict = {}
-    for die in selection_list:
-        if die in dice_dict:
-            die_roll_dict[die] = dice_dict[die]
-        print(die_roll_dict)
-    # ToDo - generate different rand_int value for each roll
 
 
 def die_amount_selector(user_input):
@@ -83,6 +132,3 @@ def roll_more_prompt():
             dice_menu()
         elif confirm == 'n':
             roll_die()
-
-
-main()
