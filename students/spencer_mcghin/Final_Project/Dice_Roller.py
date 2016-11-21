@@ -27,7 +27,6 @@ number_of_dice = [str(x) + '.' for x in range(1, len(dice_list) + 1)]
 
 selection_list = []
 
-
 # Define program functions
 def main():
     print("Hi there and welcome to the Super Dice Roller!" '\n'
@@ -52,16 +51,18 @@ def dice_menu():
 def roll_die():
     """ Roll dice function. Rolls matching die for every value in selection_list object. """
     die_roll_dict = {}
-    for die in selection_list:
-        if die in dice_dict.keys():
-            print(dice_dict[die])
+    for die in range(0, len(selection_list)):
+        if die in dice_dict:
+            die_roll_dict[die] = dice_dict[die]
+    print(die_roll_dict)
+
         # ToDo - work on roll_die function
 
 
 def die_amount_selector(user_input):
     """ Prompt user for amount of dice to roll and then add to selection list. """
     try:
-        die_amount = int(input("How many would you like to roll? '\n>"))
+        die_amount = int(input("How many would you like to roll? '\n> "))
     except ValueError:
         print("Please enter an appropriate value.")
         die_amount_selector(user_input)
@@ -75,7 +76,7 @@ def roll_more_prompt():
     """ Check with user if they would like to roll more / different dice. """
     print("Would you like to roll any additional dice?")
     while True:
-        confirm = input("Yes (y) or No (n)? '\n>")
+        confirm = input("Yes (y) or No (n)? '\n> ")
         if confirm == 'y':
             dice_menu()
         elif confirm == 'n':

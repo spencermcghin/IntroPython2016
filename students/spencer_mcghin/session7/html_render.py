@@ -4,6 +4,7 @@
 class Element(object):
     """HTML class"""
     tag = 'html'
+    ind = 4
     print('<!DOCTYPE html>')
 
     def __init__(self, content=None):
@@ -25,22 +26,10 @@ class Body(Element):
     """body subclass"""
     tag = 'body'
 
-    def render(self, out_file, ind):
-        out_file.write('<' + self.tag + '>' + '\n')
-        for line in self.content:
-            out_file.write((' ' * (ind * 4)) + line + '\n')
-        out_file.write('</' + self.tag + '>')
-
 
 class P(Element):
     """paragraph subclass"""
     tag = 'p'
-
-    def render(self, out_file, ind):
-        out_file.write('<' + self.tag + '>' + '\n')
-        for line in self.content:
-            out_file.write((' ' * (ind * 8)) + line + '\n')
-        out_file.write('</' + self.tag + '>')
 
 
 if __name__ == '__main__':
