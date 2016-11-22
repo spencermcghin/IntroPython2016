@@ -46,7 +46,8 @@ class Dice(object):
         Dice.selection_list.extend(number * side)
 
     def get_dice_value(self):
-        """ Returns random value for each die selected and then updates it to the die_roll_dict object. """
+        """ Returns random value for each die selected
+         and then updates it to the die_roll_dict object for printing later. """
         die_roll_dict = {}
         for die in self.selection_list:
             if die in side_dict:
