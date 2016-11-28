@@ -34,4 +34,4 @@ def test_change_diameter():
 
 def test_area():
     c = Circle(4)
-    assert c.area == math.pi * 4 ** 2
+    assert c.area == pi * 4 ** 2
