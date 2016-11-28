@@ -12,10 +12,18 @@ class Circle:
         self.radius = radius
 
     def __str__(self):
-        print('%s(%r)' % (self.__class__, self.radius))
+        return 'Radius: %i, Diameter: %i' % (self.radius, self.diameter)
 
     def __repr__(self):
         return repr(self.radius)
+
+    def __add__(self, other):
+        add_circle = self.radius + other.radius
+        return add_circle
+
+    def __mul__(self, other):
+        mul_circle = self.radius * other.radius
+        return mul_circle
 
     @property  # computes on the fly as opposed to storing init value
     def diameter(self):
