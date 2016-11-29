@@ -16,14 +16,14 @@ import random
 # Define Global Variables
 """ Dict object that takes user input (keys) and matches it with the side (value). """
 
-side_dict = {"1": [2],
-             "2": [4],
-             "3": [6],
-             "4": [8],
-             "5": [10],
-             "6": [12],
-             "7": [20],
-             "8": [100]}
+side_dict = {"1": 2,
+             "2": 4,
+             "3": 6,
+             "4": 8,
+             "5": 10,
+             "6": 12,
+             "7": 20,
+             "8": 100}
 
 """ List objects that are used to generate menu in dice_menu. """
 
@@ -34,29 +34,31 @@ number_of_dice = [str(x) + '.' for x in range(1, len(dice_list) + 1)]
 
 # Classes
 class Dice(object):
-    selection_list = []
 
-    def __init__(self, side, number):
+    def __init__(self, side=None, number=0, selection_list=None):
         self.side = side
         self.number = number
+        self.selection_list = []
 
-    @staticmethod
-    def add_dice(side, number):
+    def add_dice(self, side, number):
         """ Add selected number of dice to selection list object. """
-        Dice.selection_list.extend(number * side)
+        self.selection_list.extend(number * side)
 
     def get_dice_value(self):
         """ Returns random value for each die selected
          and then updates it to the die_roll_dict object for printing later. """
         die_roll_dict = {}
+        print("Thanks for helping me.")
         for die in self.selection_list:
-            if die in side_dict:
-                die_roll_dict[die] = [random.randint(1, self.side)]
+            print("die instance in list: %s" % die)
+            if die in side_dict.keys():
+                die_roll_dict[die] = random.randint(1, side_dict[self.side])
+            print(die_roll_dict.items())
 
 
 # Functions for main program
 def main():
-    print("Hail champion and welcome to the Super Dice Roller!" '\n'
+    print("Hail Champion and welcome to the Super Dice Roller!" '\n'
           "Please choose a dice to roll from the menu below, and then follow any additional instructions." '\n'
           "You'll be able to choose more and/or different dice afterwards.")
     dice_menu()
@@ -77,18 +79,23 @@ def dice_menu():
 
 def die_amount_selector(user_input):
     """ Prompt user for amount of dice to roll and then add to selection_list object. """
+    d = Dice()
     try:
         die_amount = int(input("How many would you like to roll? '\n> "))
     except ValueError:
         print("Please enter an appropriate value.")
         die_amount_selector(user_input)
     else:
-        Dice.add_dice(side=user_input.strip('.'), number=die_amount)
-        print(Dice.selection_list)
-        roll_more_prompt()
+        d.side = user_input.strip('.')
+        d.number = die_amount
+        d.add_dice(side=user_input.strip('.'), number=die_amount)
+        print(d.selection_list)
+        print("Number values:")
+        print(d.number)
+        roll_more_prompt(d)
 
 
-def roll_more_prompt():
+def roll_more_prompt(d_class):
     """ Check with user if they would like to roll more / different dice. """
     print("Would you like to roll any additional dice?")
     while True:
@@ -96,8 +103,11 @@ def roll_more_prompt():
         if confirm == 'y':
             dice_menu()
         elif confirm == 'n':
-            Dice.get_dice_value()
+            d_class.get_dice_value()
 
+
+def print_die_results():
+    """ Print contents of dice"""
 
 if __name__ == '__main__':
     main()
