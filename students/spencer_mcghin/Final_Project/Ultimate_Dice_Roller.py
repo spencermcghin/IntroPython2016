@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 
 """
 
@@ -11,6 +11,7 @@ of different dice.
 
 # Imports
 import random
+import tabulate
 
 
 # Define Global Variables
@@ -48,9 +49,7 @@ class Dice(object):
         """ Returns random value for each die selected
          and then updates it to the die_roll_dict object for printing later. """
         die_roll_dict = {}
-        print("Thanks for helping me.")
         for die in self.selection_list:
-            print("die instance in list: %s" % die)
             if die in side_dict.keys():
                 die_roll_dict[die] = random.randint(1, side_dict[self.side])
             print(die_roll_dict.items())
@@ -89,13 +88,10 @@ def die_amount_selector(user_input):
         d.side = user_input.strip('.')
         d.number = die_amount
         d.add_dice(side=user_input.strip('.'), number=die_amount)
-        print(d.selection_list)
-        print("Number values:")
-        print(d.number)
         roll_more_prompt(d)
 
 
-def roll_more_prompt(d_class):
+def roll_more_prompt(d):
     """ Check with user if they would like to roll more / different dice. """
     print("Would you like to roll any additional dice?")
     while True:
@@ -103,11 +99,13 @@ def roll_more_prompt(d_class):
         if confirm == 'y':
             dice_menu()
         elif confirm == 'n':
-            d_class.get_dice_value()
+            d.get_dice_value()
+            print_die_results(d)
 
 
-def print_die_results():
-    """ Print contents of dice"""
+def print_die_results(d):
+    """ Print contents of dice_roll_dict to a nice report. """
+    print(tabulate.tabulate(d.get_dice_value(), headers="keys", tablefmt="fancy_grid", numalign="center"))
 
 if __name__ == '__main__':
     main()
