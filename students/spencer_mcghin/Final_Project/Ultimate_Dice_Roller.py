@@ -12,19 +12,20 @@ of different dice.
 # Imports
 import random
 import tabulate
+import numpy
 
 
 # Define Global Variables
 """ Dict object that takes user input (keys) and matches it with the side (value). """
 
-side_dict = {"1": 2,
-             "2": 4,
-             "3": 6,
-             "4": 8,
-             "5": 10,
-             "6": 12,
-             "7": 20,
-             "8": 100}
+side_dict = {"1": random.randint(1, 2),
+             "2": random.randint(1, 4),
+             "3": random.randint(1, 6),
+             "4": random.randint(1, 8),
+             "5": random.randint(1, 10),
+             "6": random.randint(1, 12),
+             "7": random.randint(1, 20),
+             "8": random.randint(1, 100)}
 
 """ List objects that are used to generate menu in dice_menu. """
 
@@ -40,20 +41,25 @@ class Dice(object):
         self.side = side
         self.number = number
         self.selection_list = []
+        if selection_list:
+            self.selection_list.append(selection_list)
 
     def add_dice(self, side, number):
         """ Add selected number of dice to selection list object. """
         self.selection_list.extend(number * side)
 
-    def get_dice_value(self):
-        """ Returns random value for each die selected
-         and then updates it to the die_roll_dict object for printing later. """
-        die_roll_dict = {}
-        for die in self.selection_list:
-            if die in side_dict.keys():
-                die_roll_dict[die] = random.randint(1, side_dict[self.side])
-            print(die_roll_dict.items())
-
+    # def roll_dice_value(self):
+    #     """ Returns random value for each die selected
+    #      and then updates it to the die_roll_dict object for printing later. """
+    #     die_roll_dict = {selected_die: []}
+    #     for die in self.selection_list:
+    #         print(die)
+    #         die_roll_dict[die].append(self.side)
+    #     # for die in self.selection_list:
+    #     #     if die in side_dict.keys():
+    #     #         die_roll_dict[die] = random.randint(1, side_dict[self.side])
+    #     print(die_roll_dict.items())
+    # ToDo - Fix roll_dice_value function
 
 # Functions for main program
 def main():
@@ -99,8 +105,9 @@ def roll_more_prompt(d):
         if confirm == 'y':
             dice_menu()
         elif confirm == 'n':
-            d.get_dice_value()
-            print_die_results(d)
+            print(d.selection_list)
+            d.roll_dice_value()
+            # ToDo - Include print die results function here
 
 
 def print_die_results(d):
