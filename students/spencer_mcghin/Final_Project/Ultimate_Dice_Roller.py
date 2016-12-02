@@ -45,10 +45,14 @@ class Dice(object):
     def roll_dice(side, number):
         """ Generate a number of random values based on user input for die_amount in die_amount_selector. """
         rolls = []
-        for _ in range(number):
-            rolls.append(random.randint(1, side_dict[side]))
-        Dice.roll_dict[side] = rolls
-        print(Dice.roll_dict)
+        try:
+            for _ in range(number):
+                rolls.append(random.randint(1, side_dict[side]))
+        except KeyError:
+            print("Please select a value from the list, knave!")
+        else:
+            Dice.roll_dict[side] = rolls
+            print(Dice.roll_dict)
 
 
 # Functions for main program
