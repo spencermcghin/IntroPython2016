@@ -56,13 +56,12 @@ class Dice(object):
 
     @staticmethod
     def agg_rolls():
-        try:
-            Dice.agg_dict.update({'d' + k: [sum(v)] for k, v in Dice.roll_dict.items()})
-        except TypeError:
-            print("Incompatible data type for function. Must be a dictionary.")
+        """ Sum roll_dict values and update to agg_dict. """
+        Dice.agg_dict.update({'d' + k: [sum(v)] for k, v in Dice.roll_dict.items()})
 
 
 # Functions for main program
+
 def main():
     print("Hail Champion and welcome to the Super Dice Roller!" '\n'
           "Please choose a dice to roll from the menu below, and then follow any additional instructions." '\n'
@@ -100,20 +99,20 @@ def die_amount_selector(user_input):
 
 def roll_more_prompt():
     """ Check with user if they would like to roll more / different dice. """
+    d = Dice()
     print("Would you like to roll any additional dice?")
     while True:
         confirm = input("Yes (y) or No (n)? '\n> ")
         if confirm == 'y':
+            d.agg_rolls()
+            print(d.agg_rolls())
             dice_menu()
-            # ToDo - write roll_dict update function
         elif confirm == 'n':
-            pass
+            print_die_results(d)
 
 
-def print_die_results():
+def print_die_results(d):
     """ Print formatted output for agg_dict, which contains summed  dice rolls from roll_dict class object."""
-    d = Dice()
-    """ Print contents of agg_dict to a nice report. """
     print(tabulate.tabulate(d.agg_dict, headers="keys", tablefmt="fancy_grid", numalign="center"))
 
 if __name__ == '__main__':
