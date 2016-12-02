@@ -36,6 +36,7 @@ number_of_dice = [str(x) + '.' for x in range(1, len(dice_list) + 1)]
 # Classes
 class Dice(object):
     roll_dict = {}
+    agg_dict = {}
 
     def __init__(self, number=0, side=None):
         self.number = number
@@ -52,7 +53,13 @@ class Dice(object):
             print("Please select a value from the list, knave!")
         else:
             Dice.roll_dict[side] = rolls
-            print(Dice.roll_dict)
+
+    @staticmethod
+    def agg_rolls():
+        try:
+            Dice.agg_dict.update({'d' + k: [sum(v)] for k, v in Dice.roll_dict.items()})
+        except TypeError:
+            print("Incompatible data type for function. Must be a dictionary.")
 
 
 # Functions for main program
@@ -77,6 +84,7 @@ def dice_menu():
 
 
 def die_amount_selector(user_input):
+    """ Instantiate Dice class and prompt user for inputs. """
     d = Dice()
     """ Prompt user for amount of dice to roll and then add to selection_list object. """
     try:
@@ -102,9 +110,11 @@ def roll_more_prompt():
             pass
 
 
-# def print_die_results():
-#     """ Print contents of dice_roll_dict to a nice report. """
-#     print(tabulate.tabulate(d.get_dice_value(), headers="keys", tablefmt="fancy_grid", numalign="center"))
+def print_die_results():
+    """ Print formatted output for agg_dict, which contains summed  dice rolls from roll_dict class object."""
+    d = Dice()
+    """ Print contents of agg_dict to a nice report. """
+    print(tabulate.tabulate(d.agg_dict, headers="keys", tablefmt="fancy_grid", numalign="center"))
 
 if __name__ == '__main__':
     main()
