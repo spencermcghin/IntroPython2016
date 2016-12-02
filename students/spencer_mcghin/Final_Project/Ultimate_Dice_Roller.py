@@ -99,21 +99,20 @@ def die_amount_selector(user_input):
 
 def roll_more_prompt():
     """ Check with user if they would like to roll more / different dice. """
-    d = Dice()
     print("Would you like to roll any additional dice?")
     while True:
         confirm = input("Yes (y) or No (n)? '\n> ")
         if confirm == 'y':
-            d.agg_rolls()
-            print(d.agg_rolls())
+            Dice.agg_rolls()
             dice_menu()
         elif confirm == 'n':
-            print_die_results(d)
+            print_die_results()
+# ToDo - Figure out how to update the agg_rolls dict from inside this function
 
 
-def print_die_results(d):
+def print_die_results():
     """ Print formatted output for agg_dict, which contains summed  dice rolls from roll_dict class object."""
-    print(tabulate.tabulate(d.agg_dict, headers="keys", tablefmt="fancy_grid", numalign="center"))
+    print(tabulate.tabulate(Dice.agg_dict, headers="keys", tablefmt="fancy_grid", numalign="center"))
 
 if __name__ == '__main__':
     main()
