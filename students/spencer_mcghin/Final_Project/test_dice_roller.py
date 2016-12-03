@@ -13,4 +13,3 @@ def test_init():
 def test_get_dice_value():
     d = Dice
 
-    d.get

@@ -104,10 +104,13 @@ def roll_more_prompt():
         confirm = input("Yes (y) or No (n)? '\n> ")
         if confirm == 'y':
             Dice.agg_rolls()
+            print(Dice.agg_dict)
             dice_menu()
         elif confirm == 'n':
+            Dice.agg_rolls()
+            print(Dice.agg_dict)
             print_die_results()
-# ToDo - Figure out how to update the agg_rolls dict from inside this function
+        break
 
 
 def print_die_results():
