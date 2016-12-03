@@ -28,14 +28,22 @@ class Dice(object):
         except KeyError:
             print("Please select a value from the dice list, knave!")
         else:
-            Dice.roll_dict[side] = rolls
+            Dice.roll_dict[str(number)] = rolls
 
     @staticmethod
     def agg_rolls():
         try:
-            Dice.agg_dict.update({'d' + k: [sum(v)] for k, v in Dice.roll_dict.items()})
+            Dice.agg_dict.update({k: [sum(v)] for k, v in Dice.roll_dict.items()})
         except TypeError:
             print("Incompatible data type for function. Must be a dictionary.")
+
+
+def convert_to_d_type():
+    print(Dice.agg_dict)
+    for i in Dice.agg_dict.values():
+        print(i)
+        # side_dict[k] = Dice.agg_dict[v]
+        # print(side_dict)
 
 
 def print_die_results():
@@ -48,8 +56,8 @@ d = Dice()
 
 d.roll_dice('5', 10)
 
-d.roll_dice('3', 4)
-
 d.agg_rolls()
 
-print_die_results()
+convert_to_d_type()
+
+#print_die_results()

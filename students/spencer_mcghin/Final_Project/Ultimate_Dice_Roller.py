@@ -50,14 +50,14 @@ class Dice(object):
             for _ in range(number):
                 rolls.append(random.randint(1, side_dict[side]))
         except KeyError:
-            print("Please select a value from the list, knave!")
+            print("Prithee select a value from the list, knave!")
         else:
-            Dice.roll_dict[side] = rolls
+            Dice.roll_dict[str(number)] = rolls
 
     @staticmethod
     def agg_rolls():
         """ Sum roll_dict values and update to agg_dict. """
-        Dice.agg_dict.update({'d' + k: [sum(v)] for k, v in Dice.roll_dict.items()})
+        Dice.agg_dict.update({k: [sum(v)] for k, v in Dice.roll_dict.items()})
 
 
 # Functions for main program
@@ -111,6 +111,10 @@ def roll_more_prompt():
             print(Dice.agg_dict)
             print_die_results()
         break
+
+
+def convert_to_d_type():
+    """ Convert die selection number from menu to actual die type. """
 
 
 def print_die_results():
