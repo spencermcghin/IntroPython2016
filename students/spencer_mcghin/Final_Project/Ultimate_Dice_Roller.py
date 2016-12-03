@@ -53,6 +53,8 @@ class Dice(object):
             print("Prithee select a value from the list, knave!")
         else:
             Dice.roll_dict[str(number)] = rolls
+            print(Dice.roll_dict)
+
 
     @staticmethod
     def agg_rolls():
