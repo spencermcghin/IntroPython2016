@@ -46,13 +46,9 @@ class Dice(object):
     def roll_dice(side, number):
         """ Generate a number of random values based on user input for die_amount in die_amount_selector. """
         rolls = []
-        try:
-            for _ in range(number):
-                rolls.append(random.randint(1, side_dict[side]))
-        except KeyError:
-            print("Prithee select a value from the list, knave!")
-        else:
-            Dice.roll_dict['d' + str(side_dict[side])] = rolls
+        for _ in range(number):
+            rolls.append(random.randint(1, side_dict[side]))
+        Dice.roll_dict['d' + str(side_dict[side])] = rolls
 
     @staticmethod
     def agg_rolls():
@@ -65,19 +61,20 @@ class Dice(object):
 def main():
     print("Hail Champion and welcome to the Super Dice Roller!" '\n'
           "Please choose a dice to roll from the menu below, and then follow any additional instructions." '\n'
-          "You'll be able to choose more and/or different dice afterwards.")
+          "You'll be able to choose more and/or different dice afterwards. \n")
     dice_menu()
 
 
 def dice_menu():
     """ Print out menu of dice options. """
+    print("Choose your dice! \n-------- ")
     dice_options = zip(number_of_dice, dice_list)
     for number, dice in dice_options:
         print(number, dice)
     while True:
         user_input = input("> ") + '.'
         if user_input not in number_of_dice:
-            print("Please try again.")
+            print("Prithee select a value from the list knave!")
         else:
             die_amount_selector(user_input)
 
@@ -89,7 +86,7 @@ def die_amount_selector(user_input):
     try:
         die_amount = int(input("How many would you like to roll? '\n> "))
     except ValueError:
-        print("Please enter an appropriate value.")
+        print("Prithee select a number from the list knave!")
         die_amount_selector(user_input)
     else:
         args = user_input.strip('.'), die_amount
@@ -108,11 +105,9 @@ def roll_more_prompt():
         elif confirm == 'n':
             Dice.agg_rolls()
             print_die_results()
-        break
-
-
-def convert_to_d_type():
-    """ Convert die selection number from menu to actual die type. """
+            break
+        else:
+            roll_more_prompt()
 
 
 def print_die_results():
