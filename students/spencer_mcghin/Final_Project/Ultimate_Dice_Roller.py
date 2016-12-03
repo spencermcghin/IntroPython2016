@@ -52,9 +52,7 @@ class Dice(object):
         except KeyError:
             print("Prithee select a value from the list, knave!")
         else:
-            Dice.roll_dict[str(number)] = rolls
-            print(Dice.roll_dict)
-
+            Dice.roll_dict['d' + str(side_dict[side])] = rolls
 
     @staticmethod
     def agg_rolls():
@@ -106,11 +104,9 @@ def roll_more_prompt():
         confirm = input("Yes (y) or No (n)? '\n> ")
         if confirm == 'y':
             Dice.agg_rolls()
-            print(Dice.agg_dict)
             dice_menu()
         elif confirm == 'n':
             Dice.agg_rolls()
-            print(Dice.agg_dict)
             print_die_results()
         break
 
