@@ -103,7 +103,7 @@ def roll_more_prompt():
             Dice.agg_rolls()
             dice_menu()
         elif confirm == 'n':
-            Dice.agg_rolls()
+            # Dice.agg_rolls()
             print_die_results()
             break
         else:
@@ -112,7 +112,7 @@ def roll_more_prompt():
 
 def print_die_results():
     """ Print formatted output for agg_dict, which contains summed  dice rolls from roll_dict class object."""
-    print(tabulate.tabulate(Dice.agg_dict, headers="keys", tablefmt="fancy_grid", numalign="center"))
+    print(tabulate.tabulate(Dice.roll_dict, headers="keys", tablefmt="fancy_grid", numalign="center"))
 
 if __name__ == '__main__':
     main()

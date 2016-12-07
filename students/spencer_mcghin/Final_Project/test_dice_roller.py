@@ -1,13 +1,13 @@
 #!/usr/bin/env python
+
 """ Test code for Ultimate_Dice_Roller.py """
 
-from Ulimate_Dice_Roller import Dice
+import Ultimate_Dice_Roller
 
 
 def test_init():
-    d = Dice
+    d =
 
-    d.Dice()
 
 
 def test_get_dice_value():
