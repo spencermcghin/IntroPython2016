@@ -50,24 +50,24 @@ class Dice(object):
             rolls.append(random.randint(1, side_dict[side]))
         Dice.roll_dict['d' + str(side_dict[side])] = rolls
 
-    @staticmethod
-    def agg_rolls():
-        """ Sum roll_dict values and update to agg_dict. """
-        Dice.agg_dict.update({k: [sum(v)] for k, v in Dice.roll_dict.items()})
+    # @staticmethod
+    # def agg_rolls():
+    #     """ Sum roll_dict values and update to agg_dict. """
+    #     Dice.agg_dict.update({k: [sum(v)] for k, v in Dice.roll_dict.items()})
 
 
 # Functions for main program
 
 def main():
     print("Hail Champion and welcome to the Super Dice Roller!" '\n'
-          "Please choose a dice to roll from the menu below, and then follow any additional instructions." '\n'
+          "Please choose a die to roll from the menu below, and then follow any additional instructions." '\n'
           "You'll be able to choose more and/or different dice afterwards. \n")
     dice_menu()
 
 
 def dice_menu():
     """ Print out menu of dice options. """
-    print("Choose your dice! \n-------- ")
+    print("Choose your die! \n-------- ")
     dice_options = zip(number_of_dice, dice_list)
     for number, dice in dice_options:
         print(number, dice)
@@ -100,7 +100,7 @@ def roll_more_prompt():
     while True:
         confirm = input("Yes (y) or No (n)? '\n> ")
         if confirm == 'y':
-            Dice.agg_rolls()
+            # Dice.agg_rolls()
             dice_menu()
         elif confirm == 'n':
             # Dice.agg_rolls()
