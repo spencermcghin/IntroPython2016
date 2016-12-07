@@ -2,14 +2,11 @@
 
 """ Test code for Ultimate_Dice_Roller.py """
 
-import Ultimate_Dice_Roller
+from Ultimate_Dice_Roller import Dice
 
 
-def test_init():
-    d =
-
-
-
-def test_get_dice_value():
-    d = Dice
-
+def test_roll_dice():
+    d = Dice()
+    d.roll_dice('3', 5)
+    assert len(d.roll_dice.rolls) == 5
+    assert d.roll_dict.key() == 'd6'
