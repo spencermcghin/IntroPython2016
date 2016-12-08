@@ -20,6 +20,7 @@ import sys
 """ Dict object that takes user input (keys) and matches it with the side (value).
 Used mostly for UI and to validate user input against side_dict keys in dice menu function."""
 
+
 side_dict = {"1": 2,
              "2": 4,
              "3": 6,
@@ -50,8 +51,8 @@ class Dice(object):
 # Functions for main program
 
 def main():
-    print("Hail Champion and welcome to the Super Dice Roller!" '\n'
-          "Please choose a die to roll from the menu below, and then follow any additional instructions." '\n'
+    print('\n'"Hail Champion and welcome to the Super Dice Roller!" '\n'
+          "Please choose a die to roll from the menu below." '\n'
           "You'll be able to choose more and/or different dice afterwards. \n")
     dice_menu()
 
@@ -69,10 +70,8 @@ def dice_menu():
             die_amount_selector(user_input)
 
 
-def die_amount_selector(user_input): # init with input
-    """ Instantiate Dice class and prompt user for inputs. """
-    d = Dice()
-    """ Prompt user for amount of dice to roll and then add to selection_list object. """
+def die_amount_selector(user_input):
+    """ Prompt user for amount of dice to roll and then instantiate class. """
     try:
         die_amount = int(input("How many would you like to roll? '\n> "))
     except ValueError:
@@ -80,7 +79,7 @@ def die_amount_selector(user_input): # init with input
         die_amount_selector(user_input)
     else:
         side, number = user_input, die_amount
-        d.roll_dice(side, number)
+        Dice.roll_dice(side, number)
         roll_more_prompt()
 
 
