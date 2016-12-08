@@ -12,7 +12,6 @@ of different dice.
 # Imports
 import random
 import tabulate
-import collections
 import sys
 
 
@@ -62,6 +61,10 @@ def dice_menu():
     print("Choose your die! \n-------- ")
     for number, die in side_dict.items():
         print(number + '.', 'd' + str(die))
+    select_die_type()
+
+
+def select_die_type():
     while True:
         user_input = input("> ")
         if user_input not in side_dict.keys():
