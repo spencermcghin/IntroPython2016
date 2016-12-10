@@ -34,9 +34,9 @@ side_dict = {"1": 2,
 class Dice(object):
     roll_dict = {}
 
-    def __init__(self, number=0, side=None):
-        self.number = number
+    def __init__(self, side=None, number=0):
         self.side = side
+        self.number = number
 
     @staticmethod
     def roll_dice(side, number):
@@ -50,6 +50,7 @@ class Dice(object):
 # Functions for main program
 
 def main():
+    """ Jumping off point for program. Goes directly to dice_menu function. """
     print('\n'"Hail Champion and welcome to the Super Dice Roller!" '\n'
           "Please choose a die to roll from the menu below." '\n'
           "You'll be able to choose more and/or different dice afterwards. \n")
@@ -59,12 +60,13 @@ def main():
 def dice_menu():
     """ Print out menu of dice options. """
     print("Choose your die! \n-------- ")
-    for number, die in side_dict.items():
+    for number, die in sorted(side_dict.items()):
         print(number + '.', 'd' + str(die))
     select_die_type()
 
 
 def select_die_type():
+    """ Get value for user_input variable. Will be used later to pass to roll_dice method. """
     while True:
         user_input = input("> ")
         if user_input not in side_dict.keys():
@@ -74,7 +76,7 @@ def select_die_type():
 
 
 def die_amount_selector(user_input):
-    """ Prompt user for amount of dice to roll and then instantiate class. """
+    """ Prompt user for amount of dice to roll. """
     try:
         die_amount = int(input("How many would you like to roll? '\n> "))
     except ValueError:
@@ -106,6 +108,7 @@ def print_die_results():
 
 
 def exit_die_roller():
+    """ Menu to prompt user to exit or roll again. If they roll again, the roll_dict object is cleared. """
     while True:
         confirm = input("Exit (e) or roll again (r)? \n> ")
         if confirm == 'e':
